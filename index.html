@@ -2,294 +2,688 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#090c10">
-<title>CyberCardex — confidentialité / privacy</title>
-<meta name="description" content="CyberCardex : mentions légales et politique de confidentialité de l'app Android. Legal notice and privacy policy.">
+<meta name="description" content="La version annoncée, le catalogue et la fraîcheur des prix de CyberCardex, en un coup d'œil.">
+<title>CyberCardex — État des services</title>
 <link rel="icon" type="image/png" href="commun/icon.png">
 <link rel="preload" href="commun/polices/Rajdhani-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Couleurs, polices, fond animé, bandeau, navigation et pied de page communs au site. -->
 <link rel="stylesheet" href="commun/site.css">
 <style>
-h1.long { font-size: clamp(34px, 4.4vw, 56px); line-height: .98; letter-spacing: -1px; max-width: 16ch; }
-
-/* Sommaire collé à gauche, la section à l'écran en jaune ; feuilles comme les cartes de la page de statut. */
-.doc { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 34px; align-items: start; padding-bottom: 8px; }
-.toc { position: sticky; top: 24px; display: flex; flex-direction: column; gap: 2px; }
-.toc-title { margin: 0 0 12px; font: 500 11px var(--mono); letter-spacing: 1.7px; text-transform: uppercase; color: var(--soft); }
-.toc-title span { color: var(--yellow); margin-right: 10px; }
-.toc a {
-  display: flex; gap: 11px; padding: 9px 12px; border-left: 2px solid var(--line); color: var(--muted);
-  text-decoration: none; font: 500 15px/1.3 var(--body); transition: color .15s, border-color .15s, background .15s;
-}
-.toc a span { font: 400 10px/2 var(--mono); color: var(--cyan); }
-.toc a:hover { color: var(--text); border-left-color: #57636a; }
-.toc a.active { color: var(--yellow); border-left-color: var(--yellow); background: linear-gradient(90deg, #fcee0a12, transparent); }
-.toc a.active span { color: var(--yellow); }
-
-.sheet { position: relative; padding: 26px 30px 14px; border: 1px solid var(--line); background: #10151be8; scroll-margin-top: 20px; }
-.sheet + .sheet { margin-top: 16px; }
-.sheet::before { content: ""; position: absolute; top: -1px; left: 30px; width: 36px; height: 2px; background: var(--cyan); }
-.sheet .sheet-number { margin: 0; font: 400 10px var(--mono); color: var(--muted); letter-spacing: 1px; }
-.sheet-number span { color: var(--cyan); }
-.sheet h2 { margin: 14px 0 18px; font: 600 32px/1.05 var(--display); }
-.sheet h3 { margin: 26px 0 8px; padding-top: 18px; border-top: 1px solid var(--line); font: 600 21px/1.2 var(--display); }
-.sheet p, .sheet li { margin: 0 0 12px; color: var(--soft); font-size: 15px; line-height: 1.7; }
-.sheet h2, .sheet h3, .sheet p, .sheet li, .sheet dd { overflow-wrap: anywhere; }
-.sheet a { color: var(--text); text-decoration: underline; text-decoration-color: #fcee0a66; text-underline-offset: 3px; }
-.sheet a:hover { color: var(--yellow); }
-.sheet .lead { position: relative; padding: 2px 0 2px 20px; border-left: 1px solid #57636a; color: var(--text); }
-.sheet .lead::before { content: ""; position: absolute; top: 0; left: -1px; width: 2px; height: 24px; background: var(--cyan); }
-.sheet ul { list-style: none; padding: 0; margin: 0 0 12px; }
-.sheet li { position: relative; padding-left: 22px; }
-.sheet li::before { content: "↳"; position: absolute; left: 0; color: var(--cyan); }
-.sheet dl { margin: 0 0 14px; }
-.sheet dl div { padding: 12px 0; border-top: 1px solid var(--line); }
-.sheet dl div:first-child { border-top: 0; padding-top: 0; }
-.sheet dt { font: 400 10px var(--mono); color: var(--muted); letter-spacing: 1.1px; text-transform: uppercase; }
-.sheet dd { margin: 5px 0 0; color: var(--text); }
-
-@media (max-width: 930px) {
-  /* Sommaire en barre défilante collée en haut. */
-  .doc { grid-template-columns: 1fr; gap: 14px; }
-  .toc {
-    top: 0; z-index: 5; flex-direction: row; gap: 4px; overflow-x: auto; scrollbar-width: none;
-    margin: 0 -24px; padding: 10px 24px; background: linear-gradient(var(--bg) 78%, transparent);
+  /* Propre à la page de statut. Le Blackwall passe la grille qui dérive (commun/site.css) au rouge. */
+  body[data-blackwall="true"]::after {
+    background-image: radial-gradient(ellipse at center, #ff254329, transparent 60%),
+      linear-gradient(#ff365b40 1px, transparent 1px),
+      linear-gradient(90deg, #ff365b40 1px, transparent 1px);
   }
-  .toc-title { display: none; }
-  .toc a { flex: none; border-left: 0; border-bottom: 2px solid var(--line); white-space: nowrap; font-size: 14px; }
-  .toc a:hover { border-bottom-color: #57636a; }
-  .toc a.active { border-bottom-color: var(--yellow); background: linear-gradient(0deg, #fcee0a12, transparent); }
-  .sheet { scroll-margin-top: 70px; }
-}
-@media (max-width: 650px) {
-  .toc { margin: 0 -18px; padding: 10px 18px; }
-  .sheet { padding: 22px 20px 10px; }
-  .sheet::before { left: 20px; }
-  .sheet h2 { font-size: 28px; }
-}
+  .blackwall-echo {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
+    background:
+      linear-gradient(#ff345b55, #ff345b00) 13% 24% / 2px 28% no-repeat,
+      linear-gradient(#ff345b00, #ff345b66, #ff345b00) 84% 50% / 3px 47% no-repeat,
+      repeating-linear-gradient(0deg, transparent 0 28px, #ff345b28 28px 30px, transparent 30px 44px) 92% 50% / 36px 65% no-repeat,
+      radial-gradient(ellipse at 85% 60%, #a600202b, transparent 60%);
+  }
+  body[data-blackwall="true"] .blackwall-echo { opacity: 1; animation: blackwall-echo 4.8s ease-in-out both; }
+  @keyframes blackwall-echo {
+    0%, 100% { opacity: 0; transform: translateY(0); }
+    22%, 65% { opacity: 1; }
+    100% { transform: translateY(-18px); }
+  }
+  .on-demand { font: 400 10px var(--mono); letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; }
+  .on-demand::before { content: "/"; padding-right: 11px; color: var(--yellow); }
+  .status {
+    --signal: var(--yellow); position: relative; border: 1px solid #414a43;
+    background: linear-gradient(100deg, #fcee0a08, #11171b 64%);
+    clip-path: polygon(0 0, calc(100% - 23px) 0, 100% 23px, 100% 100%, 0 100%);
+  }
+  .status[data-tone="ok"] { --signal: var(--green); border-color: #3e6650; background: linear-gradient(100deg, #9aefb60b, #11171b 64%); }
+  .status[data-tone="warning"] { --signal: var(--yellow); border-color: #6b6630; background: linear-gradient(100deg, #fcee0a0d, #11171b 64%); }
+  .status[data-tone="error"] { --signal: var(--red); border-color: #78434b; background: linear-gradient(100deg, #ff74860c, #11171b 64%); }
+  .status::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--signal); }
+  .status::after {
+    content: ""; position: absolute; right: 11px; top: -3px; width: 1px; height: 34px;
+    transform: rotate(-45deg); background: var(--signal);
+  }
+  .status-main { display: grid; grid-template-columns: 55px minmax(0, 1fr) auto; align-items: center; gap: 24px; padding: 27px 30px 25px; }
+  .status-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+  .signal-icon {
+    display: grid; place-items: center; width: 55px; height: 55px; flex: none;
+    border: 1px solid currentColor; color: var(--signal);
+    background: color-mix(in srgb, var(--signal) 5%, transparent);
+    box-shadow: inset 0 0 18px color-mix(in srgb, var(--signal) 4%, transparent);
+  }
+  .signal-icon svg { width: 28px; height: 28px; }
+  .signal-icon .icon-ok, .signal-icon .icon-error { display: none; }
+  .status[data-tone="ok"] .icon-ok, .status[data-tone="error"] .icon-error { display: block; }
+  .status[data-tone="ok"] .icon-pending, .status[data-tone="error"] .icon-pending { display: none; }
+  .status-kicker { margin: 0 0 5px; color: var(--signal); font: 400 10px var(--mono); letter-spacing: 1.8px; text-transform: uppercase; }
+  .status h2 { margin: 0; font: 600 clamp(29px, 3.4vw, 40px)/1.05 var(--display); letter-spacing: -.2px; }
+  .status-detail { margin: 8px 0 0; color: var(--soft); font-size: 14px; line-height: 1.6; }
+  .status-bottom {
+    display: flex; gap: 18px; justify-content: space-between; align-items: center; padding: 11px 30px;
+    border-top: 1px solid #ffffff12; color: var(--muted); font: 400 10px/1.7 var(--mono);
+  }
+  .status-bottom .reading { color: var(--signal); display: inline-flex; gap: 8px; align-items: center; }
+  .reading::before { content: ""; width: 5px; height: 5px; background: currentColor; }
+  .services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); background: #10151be8; }
+  .service { min-width: 0; position: relative; display: flex; flex-direction: column; padding: 26px 27px 23px; }
+  .service + .service { border-left: 1px solid var(--line); }
+  .service::before { content: ""; position: absolute; top: -1px; left: 27px; width: 36px; height: 2px; background: var(--cyan); }
+  .service-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 19px; }
+  .service-number { font: 400 10px var(--mono); color: var(--muted); letter-spacing: 1px; }
+  .service-number span { color: var(--cyan); }
+  .service-icon { width: 23px; height: 23px; color: #809299; }
+  .service h3 { font: 600 30px/1 var(--display); margin: 0 0 20px; }
+  .datum-caption { font: 400 10px var(--mono); color: var(--muted); letter-spacing: 1.1px; text-transform: uppercase; }
+  .version { display: block; margin: 7px 0 11px; font: 600 50px/.95 var(--display); color: var(--text); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .service-copy { color: var(--muted); font-size: 13px; line-height: 1.65; margin: 0; }
+  .service-note { margin: 17px 0 0; padding-top: 13px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.6; }
+  .service .service-note:last-child { margin-top: auto; padding-top: 14px; }
+  .application-copy { margin-bottom: 22px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 7px; width: fit-content;
+    color: var(--muted); font: 400 10px/1.4 var(--mono);
+  }
+  .badge::before { content: ""; flex: none; width: 5px; height: 5px; background: currentColor; }
+  .badge[data-tone="ok"] { color: var(--green); }
+  .badge[data-tone="warning"], .badge[data-tone="pending"] { color: var(--yellow); }
+  .badge[data-tone="error"] { color: var(--red); }
+  .latest { margin-top: 10px; color: var(--soft); }
+  .latest::before { content: "↳ "; color: var(--cyan); }
+  .catalogue-date { color: var(--text); font: 500 24px/1.2 var(--display); margin: 16px 0 2px; }
+  .catalogue-rev { margin: 12px 0 0; font: 500 11px/1.5 var(--mono); letter-spacing: .6px; color: var(--yellow); }
+  .catalogue-time { color: var(--muted); font: 400 10px/1.6 var(--mono); margin-bottom: 20px; }
+  .market { padding-bottom: 15px; }
+  .market + .market { padding-top: 14px; border-top: 1px solid var(--line); }
+  .market-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 7px 12px; align-items: baseline; }
+  .market-name { font: 500 15px var(--body); }
+  .market-date { color: var(--muted); font: 400 10px/1.7 var(--mono); margin: 6px 0 0; }
+  .service-bottom { margin-top: 17px; }
+  .bottom-rule { height: 5px; margin-top: 8px; background: repeating-linear-gradient(115deg, #7d8a912b 0 1px, transparent 1px 6px); }
+  .transmission { position: relative; }
+  /* Blackwall : terminal NetWatch en surimpression, titre corrompu, léger tremblement. Pas de flash. */
+  .blackwall-term {
+    position: fixed; left: 50%; bottom: max(7vh, 24px); z-index: 30; width: min(540px, calc(100% - 36px));
+    transform: translate(-50%, 12px); opacity: 0; pointer-events: none; transition: opacity .35s, transform .35s;
+    margin: 0; padding: 16px 18px 15px; background: #13070cf2; border: 1px solid #ff345b66; border-left: 3px solid #ff345b;
+    color: #ff9aaa; font: 400 12px/1.85 var(--mono); letter-spacing: .4px; white-space: pre-wrap;
+    box-shadow: 0 0 0 1px #000, 0 20px 80px #ff003c2e;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+  body[data-blackwall="true"] .blackwall-term { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+  .blackwall-term .head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; padding-bottom: 8px;
+    border-bottom: 1px solid #ff345b33; color: #ff345b; font-weight: 500; letter-spacing: 2px; }
+  .blackwall-term .caret::after { content: "▌"; color: #ff345b; animation: caret 1s steps(1) infinite; }
+  .blackwall-term .cut { color: #ff345b; letter-spacing: 2px; }
+  .blackwall-term .note { margin-top: 8px; padding-top: 7px; border-top: 1px solid #ff345b26; color: #b98a93; font-size: 10.5px; letter-spacing: .3px; }
+  body[data-blackwall="true"] h1 .cyber { color: #ff345b; text-shadow: 3px 0 #00f0ff55; }
+  body[data-blackwall="true"] h1 .cardex { color: #ffb3bf; }
+  body[data-blackwall="true"] .top::after { background-image: linear-gradient(90deg, transparent, #ff345b, transparent); }
+  body[data-blackwall="true"] .page { animation: bw-shake .32s steps(2, end) 2; }
+  body[data-blackwall="true"] .status, body[data-blackwall="true"] .services { filter: saturate(.4) brightness(.8); transition: filter .4s; }
+  @keyframes bw-shake { 0% { transform: translate(0); } 33% { transform: translate(-3px, 1px); } 66% { transform: translate(2px, -1px); } }
+  @keyframes caret { 50% { opacity: 0; } }
+  /* Annonces écrites à la main (annonces.json) : bord de couleur selon le niveau. */
+  .notices .section-heading { padding-top: 0; }
+  .notice { position: relative; padding: 17px 22px 18px; border: 1px solid var(--line); border-left: 3px solid var(--cyan); background: #10151be8; }
+  .notice + .notice { margin-top: 10px; }
+  .notice[data-level="attention"] { border-left-color: var(--yellow); }
+  .notice[data-level="panne"] { border-left-color: var(--red); }
+  .notice .when { margin: 0 0 7px; font: 400 10px var(--mono); letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+  .notice .when b { font-weight: 500; color: var(--cyan); }
+  .notice[data-level="attention"] .when b { color: var(--yellow); }
+  .notice[data-level="panne"] .when b { color: var(--red); }
+  .notice h3 { margin: 0 0 6px; font: 600 23px/1.15 var(--display); }
+  .notice p.body { margin: 0; color: var(--soft); font-size: 14px; line-height: 1.6; white-space: pre-line; }
+  .notices + .status { margin-top: 26px; }
+  .store-link { margin-top: 12px; width: fit-content; color: var(--soft); font: 500 12px var(--mono); letter-spacing: .6px; text-decoration: underline; text-decoration-color: #fcee0a66; text-underline-offset: 3px; }
+  .store-link:hover { color: var(--yellow); }
+  .offline-note { display: flex; gap: 10px; align-items: baseline; margin: 23px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+  .offline-note > span:first-child { color: var(--cyan); font: 400 11px var(--mono); }
+  /* Bouton « Vérifier » : plaque jaune à coins coupés, repère [F5], balayage pendant la lecture. */
+  .refresh {
+    --cut: 11px; position: relative; display: inline-flex; align-items: center; gap: 11px;
+    height: 44px; padding: 0 16px 0 13px; border: 0; cursor: pointer;
+    color: var(--bg); background: var(--yellow);
+    font: 600 11px var(--mono); letter-spacing: 2.2px; text-transform: uppercase;
+    clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)));
+    transition: background .15s, color .15s;
+  }
+  .refresh svg { width: 15px; height: 15px; flex: none; }
+  .refresh .key { padding: 2px 5px; border: 1px solid #090c1066; font-weight: 500; letter-spacing: 1px; font-size: 10px; }
+  /* Trait de coupe dans le coin, comme les panneaux de l'app. */
+  .refresh::before { content: ""; position: absolute; right: 3px; top: -4px; width: 1px; height: 22px; background: var(--bg); transform: rotate(-45deg); opacity: .5; }
+  .refresh:hover { background: #fff36a; }
+  .refresh:hover #refresh-label { text-shadow: 1.5px 0 #ff003c88, -1.5px 0 #00f0ff88; }
+  .refresh:active { transform: translateY(1px); }
+  .refresh:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+  .refresh:disabled { cursor: progress; color: var(--yellow); background: #fcee0a14; }
+  .refresh:disabled .key { border-color: #fcee0a55; }
+  .refresh:disabled::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, transparent, #fcee0a40, transparent) no-repeat; background-size: 40% 100%;
+    animation: refresh-scan 1.1s linear infinite;
+  }
+  .refresh:disabled svg { animation: rotate 1.7s linear infinite; }
+  @keyframes refresh-scan { from { background-position: -40% 0; } to { background-position: 140% 0; } }
+  .status[data-busy="true"] .icon-pending { animation: rotate 5s linear infinite; }
+  noscript p { padding: 18px; border: 1px solid var(--yellow); color: var(--yellow); }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+  @media (max-width: 930px) {
+    .service { padding: 23px 19px; }
+    .service::before { left: 19px; }
+    .service h3 { font-size: 27px; }
+    .market-head { display: block; }
+    .market-head .badge { margin-top: 5px; }
+  }
+  @media (max-width: 650px) {
+    .refresh { height: 42px; padding: 0 12px 0 10px; gap: 8px; letter-spacing: 1.6px; }
+    .refresh .key { display: none; }
+    .refresh svg { width: 13px; height: 13px; }
+    .status-main { grid-template-columns: 36px minmax(0, 1fr); padding: 23px 21px; gap: 15px; align-items: start; }
+    .status-actions { grid-column: 2; align-items: flex-start; }
+    .on-demand { font-size: 10px; letter-spacing: .5px; }
+    .signal-icon { width: 36px; height: 36px; margin-top: 3px; }
+    .signal-icon svg { width: 21px; height: 21px; }
+    .status h2 { font-size: 30px; line-height: 1.05; }
+    .status-detail { font-size: 13px; }
+    .status-bottom { padding: 11px 21px; flex-direction: column; align-items: flex-start; gap: 3px; font-size: 10px; }
+    .services { grid-template-columns: 1fr; }
+    .service { padding: 23px; }
+    .service + .service { border-left: 0; border-top: 1px solid var(--line); }
+    .service::before { left: 23px; }
+    .service-head { margin-bottom: 14px; }
+    .service h3 { margin-bottom: 16px; font-size: 31px; }
+    .version { font-size: 47px; }
+    .market-head { display: flex; }
+    .market-head .badge { margin-top: 0; }
+  }
 </style>
-<script>
-// Langue avant l'affichage : #fr / #en dans l'adresse, sinon le choix fait sur le site, sinon celle du navigateur.
-(() => {
-  let lang = location.hash.startsWith('#en') ? 'en' : location.hash.startsWith('#fr') ? 'fr' : null;
-  if (!lang) { try { lang = localStorage.getItem('ccx-lang'); } catch {} }
-  if (lang !== 'fr' && lang !== 'en') lang = (navigator.language || 'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en';
-  document.documentElement.dataset.lang = lang;
-  document.documentElement.lang = lang;
-})();
-</script>
 </head>
 <body>
-<a href="#contenu" class="skip"><span class="lang-fr">Aller au contenu</span><span class="lang-en">Skip to content</span></a>
+<div class="blackwall-echo" aria-hidden="true"></div>
+<div class="blackwall-term" id="blackwall" role="alert" aria-live="assertive"></div>
+<a href="#services" class="skip" data-i18n="skip">Aller aux services</a>
 <div class="page">
   <header class="top">
     <a class="identity" href="./">
       <img class="brand-mark" src="commun/icon.png" width="35" height="35" alt="" aria-hidden="true">
-      <div><div class="brand-name">CYBER<span>CARDEX</span></div><div class="brand-label"><span class="lang-fr">Informations légales</span><span class="lang-en">Legal information</span></div></div>
+      <div><div class="brand-name">CYBER<span>CARDEX</span></div><div class="brand-label" data-i18n="brandLabel">État des services</div></div>
     </a>
     <nav class="site-nav" aria-label="Pages">
-      <a href="statut.html"><span>01</span> <b class="lang-fr">Statut</b><b class="lang-en">Status</b></a>
-      <a href="./" aria-current="page"><span>02</span> <b class="lang-fr">Confidentialité</b><b class="lang-en">Privacy</b></a>
+      <a href="./" aria-current="page"><span>01</span> <b data-i18n="navStatus">Statut</b></a>
+      <a href="confidentialite.html"><span>02</span> <b data-i18n="navPrivacy">Confidentialité</b></a>
     </nav>
     <div class="top-meta">
       <div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button></div>
     </div>
   </header>
-  <main id="contenu">
-<div class="lang-fr" lang="fr">
-<section class="hero">
-<div><p class="eyebrow"><span>//</span> Informations légales</p><h1 class="long">Mentions légales, confidentialité et conditions</h1></div>
-<div class="hero-copy"><p>Qui édite CyberCardex, ce que l’app fait de tes données et les règles d’utilisation.</p>
-<span class="local"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="14" height="13" rx="1"/><path d="M3 8h14M7 2v4M13 2v4"/></svg>Mise à jour le 22 octobre 2026.</span></div>
-</section>
-<div class="doc">
-<nav class="toc" aria-label="Sommaire"><p class="toc-title"><span>//</span> Sommaire</p>
-<a href="#fr-1"><span>01</span>Mentions légales</a>
-<a href="#fr-2"><span>02</span>Politique de confidentialité</a>
-<a href="#fr-3"><span>03</span>Conditions d'utilisation</a>
-<a href="#fr-4"><span>04</span>Crédits et propriété</a>
-<a href="#fr-5"><span>05</span>Licence</a>
-</nav>
-<div class="sheets">
-<section class="sheet" id="fr-1">
-<p class="sheet-number"><span>01</span> / 05</p>
-<h2>Mentions légales</h2>
-<dl>
-<div><dt>Éditeur</dt><dd>Louis Morvan (PommeSauce0), particulier, pour un projet personnel gratuit et non commercial.</dd></div>
-<div><dt>Directeur de la publication</dt><dd>Louis Morvan (PommeSauce0)</dd></div>
-<div><dt>Contact</dt><dd><a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a></dd></div>
-<div><dt>Hébergeur</dt><dd>Cette page : GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</dd></div>
-</dl>
-</section>
-<section class="sheet" id="fr-2">
-<p class="sheet-number"><span>02</span> / 05</p>
-<h2>Politique de confidentialité</h2>
-<p class="lead">CyberCardex enregistre ta collection sur ton téléphone. Il n'y a ni compte CyberCardex ni serveur de synchronisation, ni publicité, ni outil de mesure d'audience ou de suivi, ni cookie de suivi. L'app ne se connecte d'elle-même à Internet que pour les fonctions du menu En ligne (Réglages → En ligne), toutes coupées au départ, chacune avec son interrupteur ; aucune n'envoie ta collection. Les services qu'elles contactent (Google Play, GitHub ; voir plus bas) reçoivent ton adresse IP et les informations techniques de la demande, comme pour n'importe quel site. Ces interrupteurs ne règlent que l'app : Android et le Play Store ont leur propre fonctionnement (mises à jour de l'app, sauvegarde du téléphone, rapports de plantage si tu les as autorisés). Quand tu exportes, partages ou ouvres un lien, c'est l'application ou le service que tu choisis qui s'en charge.</p>
-<h3>Ce qui est enregistré, et où</h3>
-<p>Ta collection, ta wishlist, tes decks, tes classeurs, tes badges, tes échanges récents et tes réglages restent sur ton téléphone, dans le stockage de l'app. Ils servent seulement à faire fonctionner CyberCardex. Cela comprend aussi tes contacts d'échange et les copies de secours prises avant chaque import. Pour tout effacer : Réglages → Zone sensible → Tout effacer (y compris les données reprises de l'ancienne version), ou désinstaller l'app. Cela n'efface pas les fichiers que tu as exportés ou partagés, ni les sauvegardes gérées par Android ou Google.</p>
-<p>Sur Android, la sauvegarde automatique du téléphone peut copier ces données dans ton compte Google, si tu l'as activée. Elles y restent privées : je n'y ai pas accès.</p>
-<h3>Cookies</h3>
-<p>CyberCardex ne dépose aucun cookie : ni publicité, ni mesure d'audience, ni suivi. Il utilise seulement le stockage décrit plus haut, indispensable à son fonctionnement : c'est pourquoi aucun bandeau de consentement n'est nécessaire. Si un cookie non indispensable était ajouté un jour, ton accord serait demandé avant.</p>
-<h3>La caméra et les photos</h3>
-<p>Le scanner de cartes et le lecteur de QR code utilisent la caméra, ou une photo que tu choisis. L'image est analysée directement sur ton téléphone et n'est jamais envoyée sur Internet. La photo prise par le scanner passe par un fichier temporaire privé de l'app, dont l'app demande la suppression dès qu'elle l'a lue ; elle n'arrive jamais dans ta galerie. Le micro n'est pas utilisé.</p>
-<h3>Exports, imports et partages</h3>
-<p>Les sauvegardes (JSON) et les exports tableur (CSV) ne sont pas chiffrés : ils contiennent ta collection, avec tes notes et tes prix d'achat, et la sauvegarde complète contient aussi tes contacts d'échange. Tu choisis où les enregistrer (téléphone, cloud…) avec le sélecteur de fichiers d'Android ; ils restent alors sous la responsabilité de l'endroit choisi. De même, « Partager » envoie un texte à l'application que tu choisis.</p>
-<h3>Les services contactés</h3>
-<ul><li>Google Play, si tu as installé l'app depuis le Play Store. Google traite le téléchargement et les mises à jour selon ses propres règles. L'app lui demande s'il existe une nouvelle version seulement si tu allumes « Recherche automatique de mises à jour » dans Réglages → En ligne (coupée par défaut), ou si tu appuies sur « Rechercher une mise à jour ». Pour répondre, Google utilise des informations techniques sur ton appareil et sur la version installée de l'app. De son côté, la Play Console me montre des statistiques globales (nombre d'installations, notes) et des informations techniques de diagnostic (plantages, lenteurs), selon les règles de Google et tes réglages Android ; CyberCardex n'y ajoute aucun outil de suivi.</li><li>GitHub, seulement si tu allumes « Prix du jour », « Prix TCGplayer », « Nouvelles séries » ou « Messages du dev » dans Réglages → En ligne : l'app y télécharge les prix Cardmarket ou TCGplayer du jour, les nouvelles cartes ou les messages du développeur. GitHub reçoit alors ton adresse IP et les informations techniques de la demande ; rien sur ta collection n'est envoyé. La version web de cette politique est hébergée par GitHub (GitHub Pages) : la consulter dans un navigateur transmet les mêmes informations techniques à GitHub.</li><li>Les liens vers Cardmarket, TCGplayer, cyberpunktcg.com, Ko-fi (dons facultatifs) et les réseaux officiels ouvrent ces sites dans ton navigateur. Ils ont leurs propres règles.</li></ul>
-<p>Pourquoi : les fonctions en ligne servent uniquement à ce que tu as allumé (prix, nouvelles cartes, messages, mises à jour) ; les e-mails servent à te répondre, et Ko-fi traite tes soutiens. Google et GitHub traitent ces informations selon leurs propres règles, dans l'Union européenne ou dans d'autres pays. Les éventuels transferts hors de l'Union européenne sont encadrés par les mécanismes prévus par le RGPD (comme le cadre de protection des données UE–États-Unis et les clauses contractuelles types), décrits dans leurs politiques de confidentialité.</p>
-<p>Leurs politiques de confidentialité : <a href="https://policies.google.com/privacy">Google</a> · <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a> · <a href="https://more.ko-fi.com/privacy">Ko-fi</a>.</p>
-<h3>Les échanges par QR code</h3>
-<p>Le code d'échange contient seulement tes cartes possédées, tes doubles, ta wishlist et le pseudo que tu choisis. Il passe d'un appareil à l'autre quand on le scanne, sans aucun serveur. Il n'est pas chiffré : toute personne qui le scanne ou le photographie peut le lire et le garder. L'app garde sur ton téléphone les codes reçus (pseudo, date) pour comparer vos collections : les 20 derniers contacts, plus ceux que tu épingles. Tu peux les oublier un par un.</p>
-<h3>Si tu m'écris</h3>
-<p>Ton message et ton adresse e-mail restent dans la boîte <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a> (Google). Ils servent seulement à te répondre et à suivre ta demande (un bug, une idée). Je les garde jusqu'à un an après notre dernier échange, puis je les supprime ; plus tôt si tu me le demandes, sauf s'il faut les garder pour un litige. Base légale : mon intérêt légitime à répondre aux demandes qu'on m'envoie.</p>
-<h3>Si tu me soutiens</h3>
-<p>Si tu choisis de me soutenir sur Ko-fi, cela se passe en dehors de CyberCardex. Ko-fi et le service de paiement peuvent me communiquer ton nom ou pseudo, ton adresse e-mail, ton éventuel message et le montant. Je m'en sers seulement le temps de te remercier et de répondre à ta demande ; ce soutien ne débloque rien dans l'app. Je ne reçois jamais tes coordonnées bancaires. L'historique des transactions est aussi conservé par Ko-fi et le service de paiement, selon leurs propres règles. Pour les données que je détiens ou que je peux supprimer, contacte-moi : je traite ta demande selon les possibilités et obligations applicables. Base légale : mon intérêt légitime à te remercier et à te répondre, et le respect de mes obligations légales le cas échéant.</p>
-<h3>Sécurité</h3>
-<p>Tes données sont dans le stockage privé de l'app, que les protections habituelles d'Android isolent des autres applications. Les fonctions en ligne passent en HTTPS. Les nouvelles cartes et les messages du développeur sont signés : avant de les installer, l'app vérifie qu'ils viennent bien de moi et n'ont pas été modifiés. La seule autorisation que l'app te demande est l'accès à l'appareil photo (pour scanner) ; les fichiers et photos à importer sont choisis avec le sélecteur d'Android.</p>
-<h3>Tes droits</h3>
-<p>Tes données de collection restent sur ton téléphone : c'est toi qui les gères (modifier, exporter, tout effacer). Pour ce que je peux détenir (tes e-mails, un soutien Ko-fi), tu as le droit d'y accéder, de les corriger, de les faire effacer, d'en limiter l'usage ou de t'y opposer, et d'en recevoir une copie. Écris à <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a> : je réponds dans un délai d'un mois. Tu peux aussi saisir la CNIL (<a href="https://www.cnil.fr/">cnil.fr</a>).</p>
-</section>
-<section class="sheet" id="fr-3">
-<p class="sheet-number"><span>03</span> / 05</p>
-<h2>Conditions d'utilisation</h2>
-<ul><li>CyberCardex est gratuit, sans compte, sans publicité et sans achat dans l'app : l'app ne coûte rien et ne débloque rien contre de l'argent. Un soutien sur Ko-fi est facultatif et se fait selon les règles de Ko-fi.</li><li>Il est fourni tel quel. Les données des cartes et les prix sont indicatifs et peuvent contenir des erreurs : les règles officielles et les sites de vente font foi.</li><li>Tes données restent sur ton appareil, sous ta responsabilité : pense à faire des sauvegardes (Réglages → Données et sauvegardes locales). Sans sauvegarde, elles sont perdues si tu désinstalles l'app ou effaces ses données.</li><li>Tu peux utiliser CyberCardex pour ton usage personnel, sans en faire un usage commercial ni t'en servir pour porter atteinte aux droits d'autrui.</li><li>Dans les limites permises par la loi, PommeSauce0 ne peut être tenu responsable d'une perte de données ou d'une décision prise d'après un prix affiché. Tes droits de consommateur restent entiers.</li><li>Ces conditions relèvent du droit français. Elles peuvent évoluer : la date de mise à jour figure en haut de cette page.</li></ul>
-</section>
-<section class="sheet" id="fr-4">
-<p class="sheet-number"><span>04</span> / 05</p>
-<h2>Crédits et propriété</h2>
-<p>CyberCardex est une application communautaire gratuite et non officielle. Elle n'est ni affiliée, ni soutenue, ni approuvée par WeirdCo, CD PROJEKT RED ou NetDeck.</p>
-<p>Cyberpunk TCG est développé par WeirdCo en collaboration avec CD PROJEKT RED. Cyberpunk, Cyberpunk 2077 et les visuels des cartes appartiennent à CD PROJEKT S.A. et à leurs ayants droit.</p>
-<p>Les données du catalogue proviennent de NetDeck (<a href="https://netdeck.gg/">netdeck.gg</a>). Elles sont récupérées lors de la préparation du catalogue, puis intégrées à l'application ou proposées sous forme de mises à jour ponctuelles hébergées sur GitHub, afin de permettre une utilisation hors ligne. L'application installée ne contacte pas directement NetDeck pour afficher les cartes, et les données peuvent ne pas refléter immédiatement les dernières modifications de leur service.</p>
-<p>Prix : Cardmarket, à titre indicatif. CyberCardex n'est pas affilié à Cardmarket.</p>
-<p>Prix TCGplayer : repris chaque jour de TCGCSV (<a href="https://tcgcsv.com/">tcgcsv.com</a>), une copie publique des données de TCGplayer, à titre indicatif. CyberCardex n'est affilié ni à TCGplayer ni à TCGCSV.</p>
-<p>Le nom CyberCardex et le logo CC appartiennent à PommeSauce0.</p>
-<p>Tu es ayant droit et un contenu te pose problème ? Écris à <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a> : je le retire rapidement de ce qui est en ligne et de la prochaine version de l'app (je ne peux pas l'effacer des téléphones où l'app est déjà installée).</p>
-</section>
-<section class="sheet" id="fr-5">
-<p class="sheet-number"><span>05</span> / 05</p>
-<h2>Licence</h2>
-<p>Le code de cette version de CyberCardex n'est pas publié : tous droits réservés. Les versions 1.0.0 et 1.1.0 restent sous licence MIT. Le nom, le logo et les données des cartes ne sont couverts par aucune de ces licences.</p>
-<p>CyberCardex utilise des bibliothèques open source (Flutter, zxing2, camera, archive…) et des polices sous licence SIL Open Font (Rajdhani, Barlow, JetBrains Mono, Big Shoulders, Instrument Sans), chacune sous sa propre licence.</p>
-</section>
-</div></div></div>
 
-<div class="lang-en" lang="en">
-<section class="hero">
-<div><p class="eyebrow"><span>//</span> Legal information</p><h1 class="long">Legal notice, privacy and terms</h1></div>
-<div class="hero-copy"><p>Who publishes CyberCardex, what the app does with your data, and the terms of use.</p>
-<span class="local"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="4" width="14" height="13" rx="1"/><path d="M3 8h14M7 2v4M13 2v4"/></svg>Updated on October 22, 2026.</span></div>
-</section>
-<div class="doc">
-<nav class="toc" aria-label="Contents"><p class="toc-title"><span>//</span> Contents</p>
-<a href="#en-1"><span>01</span>Legal notice</a>
-<a href="#en-2"><span>02</span>Privacy policy</a>
-<a href="#en-3"><span>03</span>Terms of use</a>
-<a href="#en-4"><span>04</span>Credits and ownership</a>
-<a href="#en-5"><span>05</span>License</a>
-</nav>
-<div class="sheets">
-<section class="sheet" id="en-1">
-<p class="sheet-number"><span>01</span> / 05</p>
-<h2>Legal notice</h2>
-<dl>
-<div><dt>Publisher</dt><dd>Louis Morvan (PommeSauce0), a private individual, for a free and non-commercial personal project.</dd></div>
-<div><dt>Publication director</dt><dd>Louis Morvan (PommeSauce0)</dd></div>
-<div><dt>Contact</dt><dd><a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a></dd></div>
-<div><dt>Host</dt><dd>This page: GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States.</dd></div>
-</dl>
-</section>
-<section class="sheet" id="en-2">
-<p class="sheet-number"><span>02</span> / 05</p>
-<h2>Privacy policy</h2>
-<p class="lead">CyberCardex stores your collection on your phone. There is no CyberCardex account or sync server, no ads, no audience measurement or tracking tools, no tracking cookies. The app only connects to the Internet by itself for the features of the Online menu (Settings → Online), all switched off at first, each with its own switch; none of them sends your collection. The services they contact (Google Play, GitHub; see below) receive your IP address and the technical details of the request, as with any website. These switches only control the app: Android and the Play Store work on their own (app updates, phone backup, crash reports if you allowed them). When you export, share or open a link, the app or service you choose handles it.</p>
-<h3>What is stored, and where</h3>
-<p>Your collection, wishlist, decks, binders, badges, recent trades and settings stay on your phone, in the app's storage. They are only used to make CyberCardex work. This also includes your trade contacts and the recovery backups taken before each import. To erase everything: Settings → Danger zone → Erase everything (including data taken over from the previous version), or uninstall the app. This does not erase files you exported or shared, nor backups managed by Android or Google.</p>
-<p>On Android, your phone's automatic backup may copy this data to your Google account, if you turned it on. It stays private there: I have no access to it.</p>
-<h3>Cookies</h3>
-<p>CyberCardex sets no cookies: no advertising, no audience measurement, no tracking. It only uses the storage described above, which it needs to work: that is why no consent banner is needed. If a non-essential cookie were ever added, your consent would be asked first.</p>
-<h3>Camera and photos</h3>
-<p>The card scanner and the QR code reader use the camera, or a photo you pick. The image is analyzed right on your phone and is never sent over the Internet. The photo taken by the scanner goes through a private temporary file; after reading it, the app attempts to delete it. It never reaches your gallery. The microphone is not used.</p>
-<h3>Exports, imports and sharing</h3>
-<p>Backups (JSON) and spreadsheet exports (CSV) are not encrypted: they hold your collection, with your notes and purchase prices, and the full backup also holds your trade contacts. You choose where to save them (phone, cloud…) with Android's file picker; they are then handled by the place you chose. Likewise, “Share” sends a text to the app you choose.</p>
-<h3>Services contacted</h3>
-<ul><li>Google Play, if you installed the app from the Play Store. Google handles the download and updates under its own rules. The app asks it whether a new version exists only if you turn on “Automatic update check” in Settings → Online (off by default), or when you tap “Check for updates”. To answer, Google uses technical information about your device and the installed version of the app. Separately, the Play Console shows me overall statistics (installs, ratings) and technical diagnostic information (crashes, slowdowns), under Google's rules and your Android settings; CyberCardex adds no tracking tool to it.</li><li>GitHub, only if you turn on “Daily prices”, “TCGplayer prices”, “New sets” or “Dev messages” in Settings → Online: the app downloads today's Cardmarket or TCGplayer prices, the new cards or the developer's messages from it. GitHub then receives your IP address and the technical details of the request; nothing about your collection is sent. The web version of this policy is hosted by GitHub (GitHub Pages): viewing it in a browser sends the same technical details to GitHub.</li><li>Links to Cardmarket, TCGplayer, cyberpunktcg.com, Ko-fi (optional donations) and the official social networks open those sites in your browser. They have their own rules.</li></ul>
-<p>Why: online features are only used for what you turned on (prices, new cards, messages, updates); e-mails are used to reply to you, and Ko-fi processes your support. Google and GitHub handle this information under their own rules, in the European Union or in other countries. Any transfers outside the European Union are covered by the mechanisms provided for by the GDPR (such as the EU–US Data Privacy Framework and standard contractual clauses), described in their privacy policies.</p>
-<p>Their privacy policies: <a href="https://policies.google.com/privacy">Google</a> · <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a> · <a href="https://more.ko-fi.com/privacy">Ko-fi</a>.</p>
-<h3>QR code trades</h3>
-<p>The trade code only holds the cards you own, your doubles, your wishlist and the nickname you choose. It goes from one device to another when scanned, with no server. It is not encrypted: anyone who scans or photographs it can read and keep it. The app keeps the codes you receive (nickname, date) on your phone to compare collections: the last 20 contacts, plus the ones you pin. You can forget them one by one.</p>
-<h3>If you write to me</h3>
-<p>Your message and e-mail address stay in the <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a> mailbox (Google). They are only used to reply to you and follow up on your request (a bug, an idea). I keep them up to one year after our last exchange, then delete them; sooner if you ask, unless they must be kept for a dispute. Legal basis: my legitimate interest in answering the requests I receive.</p>
-<h3>If you support me</h3>
-<p>If you choose to support me on Ko-fi, it happens outside CyberCardex. Ko-fi and the payment service may share with me your name or nickname, e-mail address, any message and the amount. I use this information only for as long as needed to thank you and respond to your request; this support unlocks nothing in the app. I never receive your bank details. Ko-fi and the payment service also keep the transaction history under their own rules. Contact me about data I hold or can delete; I will handle your request according to the applicable options and obligations. Legal basis: my legitimate interest in thanking and answering you, and compliance with my legal obligations where applicable.</p>
-<h3>Security</h3>
-<p>Your data is in the app's private storage, which Android's usual protections keep apart from other apps. The online features use HTTPS. New cards and the developer's messages are signed: before installing them, the app checks that they really come from me and have not been modified. The only permission the app asks you for is camera access (to scan); files and photos to import are picked with Android's file picker.</p>
-<h3>Your rights</h3>
-<p>Your collection data stays on your phone: you manage it yourself (edit, export, erase everything). For what I may hold (your e-mails, a Ko-fi support), you have the right to access, correct, erase, restrict or object to its use, and to receive a copy. Write to <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a>: I reply within one month. You can also contact the CNIL, the French data protection authority (<a href="https://www.cnil.fr/">cnil.fr</a>).</p>
-</section>
-<section class="sheet" id="en-3">
-<p class="sheet-number"><span>03</span> / 05</p>
-<h2>Terms of use</h2>
-<ul><li>CyberCardex is free, with no account, no ads and no in-app purchases: the app costs nothing and unlocks nothing for money. Supporting me on Ko-fi is optional and subject to Ko-fi's terms.</li><li>It is provided as is. Card data and prices are indicative and may contain mistakes: the official rules and the selling sites prevail.</li><li>Your data stays on your device, under your responsibility: remember to make backups (Settings → Data and local backups). Without a backup, it is lost if you uninstall the app or clear its data.</li><li>You may use CyberCardex for your personal use, without any commercial use and without using it to infringe the rights of others.</li><li>To the extent permitted by law, PommeSauce0 cannot be held liable for data loss or for a decision made on the basis of a displayed price. Your consumer rights remain intact.</li><li>These terms are governed by French law. They may change: the update date is shown at the top of this page.</li></ul>
-</section>
-<section class="sheet" id="en-4">
-<p class="sheet-number"><span>04</span> / 05</p>
-<h2>Credits and ownership</h2>
-<p>CyberCardex is a free, unofficial community app. It is not affiliated with, supported or endorsed by WeirdCo, CD PROJEKT RED or NetDeck.</p>
-<p>Cyberpunk TCG is developed by WeirdCo in collaboration with CD PROJEKT RED. Cyberpunk, Cyberpunk 2077 and the card artwork belong to CD PROJEKT S.A. and their rights holders.</p>
-<p>The catalog data comes from NetDeck (<a href="https://netdeck.gg/">netdeck.gg</a>). It is collected when the catalog is prepared, then built into the app or offered as occasional updates hosted on GitHub, so the app works offline. The installed app does not contact NetDeck directly to display cards, and the data may not immediately reflect the latest changes to their service.</p>
-<p>Prices: Cardmarket, for reference only. CyberCardex is not affiliated with Cardmarket.</p>
-<p>TCGplayer prices: taken each day from TCGCSV (<a href="https://tcgcsv.com/">tcgcsv.com</a>), a public copy of TCGplayer's data, for reference only. CyberCardex is not affiliated with TCGplayer or TCGCSV.</p>
-<p>The CyberCardex name and the CC logo belong to PommeSauce0.</p>
-<p>Are you a rights holder with an issue about some content? Write to <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a>: I quickly remove it from what is online and from the next version of the app (I cannot erase it from phones where the app is already installed).</p>
-</section>
-<section class="sheet" id="en-5">
-<p class="sheet-number"><span>05</span> / 05</p>
-<h2>License</h2>
-<p>The code of this version of CyberCardex is not published: all rights reserved. Versions 1.0.0 and 1.1.0 remain under the MIT license. The name, the logo and the card data are not covered by any of these licenses.</p>
-<p>CyberCardex uses open source libraries (Flutter, zxing2, camera, archive…) and fonts under the SIL Open Font License (Rajdhani, Barlow, JetBrains Mono, Big Shoulders, Instrument Sans), each under its own license.</p>
-</section>
-</div></div></div>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow" data-i18n-html="eyebrow"><span>//</span> État des services en ligne</p>
+        <h1 id="page-title" aria-label="CyberCardex"><span class="cyber">CYBER</span><span class="cardex">CARDEX.</span></h1>
+      </div>
+      <div class="hero-copy">
+        <p data-i18n-html="heroCopy">Le catalogue. Les prix.<br><strong>Un point sur le signal.</strong><br>Les informations utiles, en un coup d'œil.</p>
+        <span class="local">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="4" y="2" width="12" height="16" rx="1"/><path d="M8 15h4"/></svg>
+          <span data-i18n="local">Ta collection reste utilisable hors ligne.</span>
+        </span>
+      </div>
+    </section>
 
+    <section class="notices" id="notices" aria-labelledby="notices-title" hidden>
+      <div class="section-heading">
+        <h2 id="notices-title" data-i18n-html="noticesTitle"><span>//</span> Annonces</h2>
+      </div>
+      <div id="notice-list"></div>
+    </section>
+
+    <section class="status" id="state" data-tone="pending" data-busy="true" aria-labelledby="status-title">
+      <div class="status-main">
+        <div class="signal-icon" aria-hidden="true">
+          <svg class="icon-pending" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M14 3a11 11 0 1 1-11 11M14 3v6M3 14h6"/><path d="M14 12v4m-2-2h4"/></svg>
+          <svg class="icon-ok" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m7 14 5 5L22 9"/></svg>
+          <svg class="icon-error" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m8 8 12 12M20 8 8 20"/></svg>
+        </div>
+        <div role="status" aria-live="polite" aria-atomic="true">
+          <p class="status-kicker" data-i18n="statusKicker">État général</p>
+          <h2 id="status-title">Lecture du signal.</h2>
+          <p class="status-detail" id="status-detail">Vérification du catalogue et des prix…</p>
+        </div>
+        <div class="status-actions">
+          <span class="on-demand" data-i18n="onDemand">Vérification à la demande</span>
+          <button type="button" class="refresh" id="refresh">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 8a8 8 0 1 0 .3 7M20 3v5h-5"/></svg>
+            <span id="refresh-label">Vérifier</span>
+            <span class="key" aria-hidden="true">F5</span>
+          </button>
+        </div>
+      </div>
+      <div class="status-bottom">
+        <span class="reading" id="reading">VÉRIFICATION EN COURS</span>
+        <span id="checked">Dernière vérification : en cours</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="services-title" id="services">
+      <div class="section-heading">
+        <h2 id="services-title" data-i18n-html="servicesTitle"><span>//</span> Les services</h2>
+        <span class="section-meta" data-i18n="sectionMeta">Version · Catalogue · Prix</span>
+      </div>
+      <div class="services" aria-busy="true" id="service-panels">
+        <article class="service" aria-labelledby="application-title">
+          <div class="service-head">
+            <span class="service-number" data-i18n-html="num01"><span>01</span> / APPLICATION</span>
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="1"/><path d="M10 18h4M6 5h12"/></svg>
+          </div>
+          <h3 id="application-title" data-i18n="appTitle">Application</h3>
+          <span class="datum-caption" data-i18n="appCaption">Dernière version annoncée</span>
+          <strong class="version" id="version">—</strong>
+          <span class="badge" id="application-badge" data-tone="pending">Vérification</span>
+          <p class="service-copy" style="margin-top:15px" data-i18n="appCopy">Les nouvelles cartes sont prévues pour cette version de l’app et les précédentes.</p>
+          <a class="store-link application-copy" href="https://play.google.com/store/apps/details?id=app.cybercardex" rel="noopener" data-i18n="playLink">Télécharger sur Google Play ↗</a>
+          <p class="service-note" data-i18n="appNote">Collection et catalogue embarqué utilisables sans connexion.</p>
+        </article>
+
+        <article class="service" aria-labelledby="catalogue-title">
+          <div class="service-head">
+            <span class="service-number" data-i18n-html="num02"><span>02</span> / CATALOGUE</span>
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M5 5h12v16H5zM9 1h12v16M8 9h6M8 12h6M8 15h4"/></svg>
+          </div>
+          <h3 id="catalogue-title" data-i18n="catTitle">Nouvelles cartes</h3>
+          <span class="badge" id="catalogue-badge" data-tone="pending">Vérification</span>
+          <p class="catalogue-rev" id="catalogue-rev" hidden></p>
+          <p class="catalogue-date" id="catalogue-date">—</p>
+          <p class="catalogue-time" id="catalogue-time">Dernière publication</p>
+          <p class="service-copy" id="catalogue-copy">Consultation du catalogue en ligne…</p>
+          <p class="service-copy latest" id="catalogue-latest" hidden></p>
+          <p class="service-note" data-i18n="catNote">Dans l’app : Réglages → En ligne → Nouvelles séries.</p>
+        </article>
+
+        <article class="service" aria-labelledby="prices-title">
+          <div class="service-head">
+            <span class="service-number" data-i18n-html="num03"><span>03</span> / PRIX</span>
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3 19V5m0 14h18M6 14l4-4 4 2 6-7M16 5h4v4"/></svg>
+          </div>
+          <h3 id="prices-title" data-i18n="pricesTitle">Prix du jour</h3>
+          <div class="market">
+            <div class="market-head"><span class="market-name">Cardmarket</span><span class="badge" id="cm-badge" data-tone="pending">Vérification</span></div>
+            <p class="market-date" id="cm-date">—</p>
+          </div>
+          <div class="market">
+            <div class="market-head"><span class="market-name">TCGplayer</span><span class="badge" id="tcg-badge" data-tone="pending">Vérification</span></div>
+            <p class="market-date" id="tcg-date">—</p>
+          </div>
+          <p class="service-note" data-i18n="pricesNote">Actualisation quotidienne. Prix donnés à titre indicatif.</p>
+        </article>
+      </div>
+      <div class="bottom-rule" aria-hidden="true"></div>
+    </section>
+
+    <p class="offline-note"><span>↳</span> <span data-i18n="offline">Ces services sont facultatifs. Une interruption n’empêche pas de consulter ta collection hors ligne.</span></p>
+    <noscript><p>Active JavaScript pour vérifier les données en ligne. / Turn on JavaScript to check online data. La collection reste utilisable hors ligne. / Your collection stays usable offline.</p></noscript>
   </main>
+
   <footer>
     <div>
       <p><span class="lang-fr">CyberCardex est une application communautaire gratuite et non officielle, ni affiliée ni approuvée par CD PROJEKT RED, WeirdCo ou NetDeck.</span><span class="lang-en">CyberCardex is a free, unofficial community app, not affiliated with or endorsed by CD PROJEKT RED, WeirdCo or NetDeck.</span></p>
       <p class="footer-contact">CyberCardex · Louis Morvan (PommeSauce0) · <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a></p>
-      <p class="legal-links"><a href="https://play.google.com/store/apps/details?id=app.cybercardex" rel="noopener">Google Play</a> · <a href="statut.html"><span class="lang-fr">État des services</span><span class="lang-en">Service status</span></a> · <a href="./"><span class="lang-fr">Confidentialité</span><span class="lang-en">Privacy</span></a> · <a href="commun/polices/LICENSES.txt"><span class="lang-fr">Polices</span><span class="lang-en">Fonts</span> : SIL Open Font License</a></p>
+      <p class="legal-links"><a href="https://play.google.com/store/apps/details?id=app.cybercardex" rel="noopener">Google Play</a> · <a href="./"><span class="lang-fr">État des services</span><span class="lang-en">Service status</span></a> · <a href="confidentialite.html"><span class="lang-fr">Confidentialité</span><span class="lang-en">Privacy</span></a> · <a href="commun/polices/LICENSES.txt"><span class="lang-fr">Polices</span><span class="lang-en">Fonts</span> : SIL Open Font License</a></p>
     </div>
-    <div class="transmission"><span class="end-mark"><span class="lang-fr">CYBERCARDEX // FIN DE TRANSMISSION</span><span class="lang-en">CYBERCARDEX // END OF TRANSMISSION</span></span></div>
+    <div class="transmission">
+      <button class="end-mark" id="transmission" type="button" title="Il reste un signal… (ou tape « blackwall »)" data-i18n="endMark">CYBERCARDEX // FIN DE TRANSMISSION</button>
+    </div>
   </footer>
 </div>
+
 <script>
 (() => {
   'use strict';
-  const root = document.documentElement;
-  const buttons = document.querySelectorAll('.lang button');
-  const show = () => buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === root.dataset.lang)));
-  // Choix gardé pour tout le site (même clé que la page de statut).
-  buttons.forEach((b) => b.addEventListener('click', () => {
-    root.dataset.lang = root.lang = b.dataset.lang;
-    try { localStorage.setItem('ccx-lang', b.dataset.lang); } catch {}
-    show();
-  }));
-  show();
-  // Sommaire : la section à l'écran en jaune.
-  const links = [...document.querySelectorAll('.toc a')];
-  const seen = new IntersectionObserver((entries) => {
-    for (const e of entries) {
-      if (!e.isIntersecting) continue;
-      for (const a of links) {
-        a.classList.toggle('active', a.hash === '#' + e.target.id);
-        // Sommaire en barre (téléphone) : l'onglet actif reste visible.
-        const bar = a.parentElement;
-        if (a.hash === '#' + e.target.id && bar.scrollWidth > bar.clientWidth) {
-          bar.scrollTo({left: a.offsetLeft - (bar.clientWidth - a.clientWidth) / 2, behavior: 'smooth'});
-        }
-      }
+  // Une seule page publique : trois lectures de données publiques et les annonces, sans mode de gestion. FR / EN.
+  const RAW = 'https://raw.githubusercontent.com/CyberCardex/cybercardex-data';
+  const STALE_HOURS = 36;
+  const $ = (id) => document.getElementById(id);
+
+  // ---------- Textes ----------
+  const TEXT = {
+    fr: {
+      skip: 'Aller aux services', brandLabel: 'État des services', navStatus: 'Statut', navPrivacy: 'Confidentialité', onDemand: 'Vérification à la demande',
+      refresh: 'Vérifier', refreshBusy: 'Scan…',
+      eyebrow: '<span>//</span> État des services en ligne',
+      heroCopy: 'Les services en ligne de l’app, vérifiés en direct depuis ton navigateur.<br><strong>Nouvelles cartes, prix du jour, annonces.</strong>',
+      local: 'Ta collection reste utilisable hors ligne.', statusKicker: 'État général',
+      servicesTitle: '<span>//</span> Les services', sectionMeta: 'Version · Catalogue · Prix',
+      num01: '<span>01</span> / APPLICATION', appTitle: 'Application', appCaption: 'Version la plus récente prise en charge par le catalogue',
+      appCopy: 'Les nouvelles cartes sont prévues pour cette version de l’app et les précédentes.', playLink: 'Télécharger sur Google Play ↗', appNote: 'Collection et catalogue embarqué utilisables sans connexion.',
+      num02: '<span>02</span> / CATALOGUE', catTitle: 'Nouvelles cartes', catNote: 'Dans l’app : Réglages → En ligne → Nouvelles séries.',
+      num03: '<span>03</span> / PRIX', pricesTitle: 'Prix du jour', pricesNote: 'Actualisation quotidienne. Prix donnés à titre indicatif.',
+      offline: 'Ces services sont facultatifs. Une interruption n’empêche pas de consulter ta collection hors ligne.',
+      endMark: 'CYBERCARDEX // FIN DE TRANSMISSION', endTitle: 'Il reste un signal… (ou tape « blackwall »)',
+      checking: 'Vérification', unavailable: 'Indisponible', noData: 'Données non accessibles pour le moment.',
+      fresh: 'À jour', future: 'Date à vérifier', late: 'En retard',
+      annOk: 'Catalogue lu', annKo: 'Catalogue inaccessible', catOk: 'Accessible',
+      revision: (r, n, v) => `Révision ${r} · ${n} impression${n > 1 ? 's' : ''} · app ${v} et +`,
+      noticesTitle: '<span>//</span> Annonces', levels: {info: 'Info', attention: 'Attention', panne: 'Incident'}, since: 'depuis le',
+      catAvailable: 'Catalogue disponible', lastPub: 'Dernière publication', pubUnknown: 'Date de publication non renseignée',
+      pubUnchecked: 'Dernière publication non vérifiée', catDown: 'Le catalogue en ligne est momentanément inaccessible.',
+      catCopy: 'Les mises à jour de cartes se téléchargent depuis l’application.', catNone: 'Aucune nouveauté publiée pour le moment.',
+      pending: ['Lecture du signal.', 'Vérification du catalogue et des prix…', 'VÉRIFICATION EN COURS'],
+      error: ['Signal perturbé.', 'Une partie des données est inaccessible depuis ce navigateur. Tu peux réessayer.', 'ACCÈS PARTIEL OU INDISPONIBLE'],
+      warning: ['Prix à actualiser.', 'Les données sont accessibles, mais la date d’au moins un marché est à vérifier.', 'DONNÉES ACCESSIBLES · FRAÎCHEUR À VÉRIFIER'],
+      ok: ['Signal stable.', 'Le catalogue est accessible et les prix des deux marchés sont récents.', 'SERVICES EN LIGNE ACCESSIBLES'],
+      broken: ['Vérification interrompue.', 'La vérification n’a pas pu se terminer. Tu peux réessayer.', 'RÉSULTAT NON DISPONIBLE'],
+      checkedRunning: 'Dernière vérification : en cours', checkedBroken: 'Dernière vérification non terminée',
+      checked: (n, d, h) => `${n}/3 sources · vérifié le ${d} à ${h}`,
+      ago: (m) => m < 60 ? `il y a ${m} min` : m < 2880 ? `il y a ${Math.round(m / 60)} h` : `il y a ${Math.round(m / 1440)} j`,
+      bwHead: ['NETWATCH // ALERTE', 'NIV. 4'],
+      bwLines: ['> Trace détectée hors du périmètre autorisé.', '> Origine : au-delà du Blackwall.',
+        '> Signature : inconnue. Elle te regarde aussi.', '> Ne réponds pas. Ne cherche pas à comprendre.', '[ CONNEXION COUPÉE PAR NETWATCH ]'],
+      bwNote: 'Easter egg · simulation visuelle, rien ne s’est passé.',
+    },
+    en: {
+      skip: 'Skip to services', brandLabel: 'Service status', navStatus: 'Status', navPrivacy: 'Privacy', onDemand: 'Checked on demand',
+      refresh: 'Check', refreshBusy: 'Scan…',
+      eyebrow: '<span>//</span> Online service status',
+      heroCopy: 'The app’s online services, checked live from your browser.<br><strong>New cards, daily prices, announcements.</strong>',
+      local: 'Your collection stays usable offline.', statusKicker: 'Overall status',
+      servicesTitle: '<span>//</span> Services', sectionMeta: 'Version · Catalogue · Prices',
+      num01: '<span>01</span> / APP', appTitle: 'App', appCaption: 'Newest version supported by the catalog',
+      appCopy: 'New cards are made for this version of the app and earlier ones.', playLink: 'Get it on Google Play ↗', appNote: 'Collection and built-in catalogue work without a connection.',
+      num02: '<span>02</span> / CATALOGUE', catTitle: 'New cards', catNote: 'In the app: Settings → Online → New sets.',
+      num03: '<span>03</span> / PRICES', pricesTitle: 'Daily prices', pricesNote: 'Updated daily. Prices for reference only.',
+      offline: 'These services are optional. An outage does not stop you from browsing your collection offline.',
+      endMark: 'CYBERCARDEX // END OF TRANSMISSION', endTitle: 'A signal remains… (or type “blackwall”)',
+      checking: 'Checking', unavailable: 'Unavailable', noData: 'Data not reachable right now.',
+      fresh: 'Up to date', future: 'Date to check', late: 'Late',
+      annOk: 'Catalog read', annKo: 'Catalog unreachable', catOk: 'Reachable',
+      revision: (r, n, v) => `Revision ${r} · ${n} printing${n === 1 ? '' : 's'} · app ${v}+`,
+      noticesTitle: '<span>//</span> Announcements', levels: {info: 'Info', attention: 'Heads-up', panne: 'Outage'}, since: 'since',
+      catAvailable: 'Catalogue available', lastPub: 'Last published', pubUnknown: 'Publication date not provided',
+      pubUnchecked: 'Last publication not checked', catDown: 'The online catalogue is temporarily unreachable.',
+      catCopy: 'Card updates are downloaded from the app.', catNone: 'Nothing new published yet.',
+      pending: ['Reading the signal.', 'Checking the catalogue and prices…', 'CHECK IN PROGRESS'],
+      error: ['Signal disrupted.', 'Some data cannot be reached from this browser. You can try again.', 'PARTIAL OR NO ACCESS'],
+      warning: ['Prices need a refresh.', 'Data is reachable, but at least one market’s date needs checking.', 'DATA REACHABLE · FRESHNESS TO CHECK'],
+      ok: ['Signal steady.', 'The catalogue is reachable and both markets’ prices are recent.', 'ONLINE SERVICES REACHABLE'],
+      broken: ['Check interrupted.', 'The check could not finish. You can try again.', 'NO RESULT'],
+      checkedRunning: 'Last check: in progress', checkedBroken: 'Last check did not finish',
+      checked: (n, d, h) => `${n}/3 sources · checked ${d} at ${h}`,
+      ago: (m) => m < 60 ? `${m} min ago` : m < 2880 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`,
+      bwHead: ['NETWATCH // ALERT', 'LVL 4'],
+      bwLines: ['> Trace detected outside the authorised perimeter.', '> Origin: beyond the Blackwall.',
+        '> Signature: unknown. It is watching you too.', '> Do not answer. Do not try to understand.', '[ CONNECTION CUT BY NETWATCH ]'],
+      bwNote: 'Easter egg · visual simulation, nothing actually happened.',
+    },
+  };
+
+  // Langue : choix enregistré, sinon celle du navigateur (français si elle commence par « fr »).
+  const store = { get: () => { try { return localStorage.getItem('ccx-lang'); } catch { return null; } },
+                  set: (v) => { try { localStorage.setItem('ccx-lang', v); } catch {} } };
+  let lang = ['fr', 'en'].includes(store.get()) ? store.get() : (navigator.language || 'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+  const T = () => TEXT[lang];
+  const locale = () => (lang === 'fr' ? 'fr-FR' : 'en-GB');
+
+  const dateValue = (value) => typeof value === 'string' && Number.isFinite(Date.parse(value));
+  const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+  const catalogueValid = (data) => isObject(data) && Number.isSafeInteger(data.latestApp) && data.latestApp > 0 && Array.isArray(data.notebooks);
+  const pricesValid = (data) => isObject(data) && dateValue(data.updatedAt) && isObject(data.products) && Object.keys(data.products).length > 0;
+  const day = (value) => new Date(value).toLocaleDateString(locale(), {day: 'numeric', month: 'long', year: 'numeric'});
+  const time = (value) => new Date(value).toLocaleTimeString(locale(), {hour: '2-digit', minute: '2-digit'});
+  const ago = (value) => T().ago(Math.max(0, Math.round((Date.now() - Date.parse(value)) / 60000)));
+  const codeVersion = (code) => [Math.floor(code / 10000), Math.floor(code / 100) % 100, code % 100].join('.');
+
+  // Annonces : annonces.json à côté de la page (tableau vide = bloc caché), affichées comme texte, entre leurs dates.
+  const LEVELS = ['info', 'attention', 'panne'];
+  const noticeText = (v) => isObject(v) && typeof v.titre === 'string' && v.titre.trim() !== '';
+  const noticeValid = (n) => isObject(n) && LEVELS.includes(n.niveau) && noticeText(n.fr) && noticeText(n.en);
+  const today = () => new Date().toLocaleDateString('sv');
+  const showing = (n) => (!dateValue(n.debut) || n.debut.slice(0, 10) <= today()) && (!dateValue(n.fin) || today() <= n.fin.slice(0, 10));
+  let notices = [];
+
+  async function loadNotices() {
+    try {
+      const response = await fetch('annonces.json', {cache: 'no-store'});
+      if (!response.ok) return [];
+      const data = await response.json();
+      return isObject(data) && Array.isArray(data.annonces) ? data.annonces.filter(noticeValid).filter(showing).slice(0, 5) : [];
+    } catch {
+      return [];
     }
-  }, {rootMargin: '-30% 0px -60% 0px'});
-  document.querySelectorAll('.sheet').forEach((sheet) => seen.observe(sheet));
+  }
+
+  function renderNotices() {
+    const t = T();
+    const boxes = notices.map((n) => {
+      const text = n[lang];
+      const box = Object.assign(document.createElement('article'), {className: 'notice'});
+      box.dataset.level = n.niveau;
+      const when = Object.assign(document.createElement('p'), {className: 'when'});
+      when.append(Object.assign(document.createElement('b'), {textContent: t.levels[n.niveau]}));
+      if (dateValue(n.debut)) when.append(' · ' + t.since + ' ' + day(n.debut.slice(0, 10) + 'T12:00:00'));
+      box.append(when, Object.assign(document.createElement('h3'), {textContent: text.titre.trim().slice(0, 120)}));
+      if (typeof text.texte === 'string' && text.texte.trim()) {
+        box.append(Object.assign(document.createElement('p'), {className: 'body', textContent: text.texte.trim().slice(0, 600)}));
+      }
+      return box;
+    });
+    $('notice-list').replaceChildren(...boxes);
+    $('notices').hidden = !boxes.length;
+  }
+
+  // Résultat de la dernière lecture (null pendant une lecture) : la page se redessine dans l'autre langue sans relire.
+  let result = null;
+  let lastCheck = 0;
+  let checking = false;
+
+  async function get(path, validate) {
+    const controller = new AbortController();
+    const deadline = setTimeout(() => controller.abort(), 12000);
+    try {
+      const response = await fetch(RAW + path, {cache: 'no-store', referrerPolicy: 'no-referrer', signal: controller.signal});
+      if (!response.ok) throw new Error('unavailable');
+      const data = await response.json();
+      return validate(data) ? data : null;
+    } catch {
+      return null;
+    } finally {
+      clearTimeout(deadline);
+    }
+  }
+
+  function badge(id, tone, label) {
+    $(id).dataset.tone = tone;
+    $(id).textContent = label;
+  }
+
+  function state(tone) {
+    const [title, detail, reading] = T()[tone];
+    $('state').dataset.tone = tone === 'broken' ? 'error' : tone;
+    $('status-title').textContent = title;
+    $('status-detail').textContent = detail;
+    $('reading').textContent = reading;
+  }
+
+  function market(prefix, data) {
+    if (!data) {
+      badge(prefix + '-badge', 'error', T().unavailable);
+      $(prefix + '-date').textContent = T().noData;
+      return 'unavailable';
+    }
+    const age = (Date.now() - Date.parse(data.updatedAt)) / 3600000;
+    const future = age < -0.25;
+    const recent = age <= STALE_HOURS && !future;
+    badge(prefix + '-badge', recent ? 'ok' : 'warning', recent ? T().fresh : future ? T().future : T().late);
+    $(prefix + '-date').textContent = day(data.updatedAt) + ' · ' + time(data.updatedAt) + (future ? '' : ' · ' + ago(data.updatedAt));
+    return recent ? 'recent' : 'delayed';
+  }
+
+  // Textes fixes de la page, puis les résultats.
+  function render() {
+    const t = T();
+    document.documentElement.lang = lang;
+    document.documentElement.dataset.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t[el.dataset.i18n]; });
+    document.querySelectorAll('[data-i18n-html]').forEach((el) => { el.innerHTML = t[el.dataset.i18nHtml]; });
+    $('transmission').title = t.endTitle;
+    document.querySelectorAll('.lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    $('refresh-label').textContent = checking ? t.refreshBusy : t.refresh;
+    renderNotices();
+
+    if (!result) {
+      state('pending');
+      ['application-badge', 'catalogue-badge', 'cm-badge', 'tcg-badge'].forEach((id) => badge(id, 'pending', t.checking));
+      $('checked').textContent = t.checkedRunning;
+      return;
+    }
+    if (result.broken) {
+      state('broken');
+      $('checked').textContent = t.checkedBroken;
+      return;
+    }
+    const {catalogue, cm, tcg, at} = result;
+    $('version').textContent = catalogue ? codeVersion(catalogue.latestApp) : '—';
+    badge('application-badge', catalogue ? 'ok' : 'error', catalogue ? t.annOk : t.annKo);
+    badge('catalogue-badge', catalogue ? 'ok' : 'error', catalogue ? t.catOk : t.unavailable);
+
+    const published = catalogue && dateValue(catalogue.updatedAt) ? catalogue.updatedAt : null;
+    $('catalogue-date').textContent = catalogue ? published ? day(published) : t.catAvailable : '—';
+    $('catalogue-time').textContent = published ? t.lastPub + ' · ' + time(published) + ' · ' + ago(published) : catalogue ? t.pubUnknown : t.pubUnchecked;
+    // Dernier cahier : son titre dit ce qu'il apporte (texte du catalogue signé, affiché comme texte).
+    const latest = catalogue && catalogue.notebooks.filter((n) => isObject(n) && Number.isSafeInteger(n.revision))
+      .sort((a, b) => b.revision - a.revision)[0];
+    const titles = latest && isObject(latest.title) ? latest.title : {};
+    const title = typeof titles[lang] === 'string' ? titles[lang] : typeof titles.fr === 'string' ? titles.fr : '';
+    // Révision du dernier cahier : pour suivre les publications d'un coup d'œil.
+    $('catalogue-rev').hidden = !latest;
+    if (latest) {
+      const count = Array.isArray(latest.printings) ? latest.printings.length : 0;
+      const minApp = Number.isSafeInteger(latest.minApp) && latest.minApp > 0 ? codeVersion(latest.minApp) : '—';
+      $('catalogue-rev').textContent = t.revision(latest.revision, count, minApp);
+    }
+    $('catalogue-latest').hidden = !title.trim();
+    $('catalogue-latest').textContent = title.trim().slice(0, 120);
+    $('catalogue-copy').textContent = !catalogue ? t.catDown : catalogue.notebooks.length ? t.catCopy : t.catNone;
+
+    const cmState = market('cm', cm);
+    const tcgState = market('tcg', tcg);
+    state(!catalogue || cmState === 'unavailable' || tcgState === 'unavailable' ? 'error'
+      : cmState === 'delayed' || tcgState === 'delayed' ? 'warning' : 'ok');
+    $('checked').textContent = t.checked([catalogue, cm, tcg].filter(Boolean).length, day(at), time(at));
+  }
+
+  async function check() {
+    if (checking) return;
+    checking = true;
+    result = null;
+    $('refresh').disabled = true;
+    $('refresh').setAttribute('aria-busy', 'true');
+    $('state').dataset.busy = 'true';
+    $('service-panels').setAttribute('aria-busy', 'true');
+    render();
+    try {
+      const [catalogue, cm, tcg, news] = await Promise.all([
+        get('/main/catalogue.json', catalogueValid),
+        get('/prix/cardmarket.json', pricesValid),
+        get('/prix/tcgplayer.json', pricesValid),
+        loadNotices(),
+      ]);
+      notices = news;
+      result = {catalogue, cm, tcg, at: new Date().toISOString()};
+      lastCheck = Date.now();
+    } catch {
+      result = {broken: true};
+    } finally {
+      checking = false;
+      $('refresh').disabled = false;
+      $('refresh').setAttribute('aria-busy', 'false');
+      $('state').dataset.busy = 'false';
+      $('service-panels').setAttribute('aria-busy', 'false');
+      render();
+    }
+  }
+
+  // ---------- Blackwall : clin d'œil purement visuel, aucun appel réseau ni changement des résultats ----------
+  // Ouvert par « FIN DE TRANSMISSION » ou en tapant « blackwall » ; Échap ferme. Mouvement réduit : texte d'un coup.
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NOISE = '█▓▒░<>/\\#@$%01¥ΞΔ';
+  let run = 0;
+  const wait = (ms, id) => new Promise((done) => setTimeout(() => done(id === run), ms));
+  const heading = { cyber: document.querySelector('h1 .cyber'), cardex: document.querySelector('h1 .cardex') };
+
+  async function corrupt(el, target, id) {
+    for (let frame = 0; frame < 9 && !calm; frame++) {
+      el.textContent = [...target].map((c, i) => (i < frame - 3 ? c : NOISE[Math.floor(Math.random() * NOISE.length)])).join('');
+      if (!(await wait(55, id))) return;
+    }
+    el.textContent = target;
+  }
+
+  function closeBlackwall() {
+    run++;
+    delete document.body.dataset.blackwall;
+    $('blackwall').replaceChildren();
+    heading.cyber.textContent = 'CYBER';
+    heading.cardex.textContent = 'CARDEX.';
+  }
+
+  async function openBlackwall() {
+    if (document.body.dataset.blackwall) return;
+    const id = ++run;
+    const t = T();
+    document.body.dataset.blackwall = 'true';
+    const term = $('blackwall');
+    const head = document.createElement('div');
+    head.className = 'head';
+    for (const part of t.bwHead) head.append(Object.assign(document.createElement('span'), {textContent: part}));
+    term.replaceChildren(head);
+    corrupt(heading.cyber, 'BLACK', id);
+    corrupt(heading.cardex, 'WALL.', id);
+    for (const [i, text] of t.bwLines.entries()) {
+      const line = document.createElement('div');
+      line.className = 'caret' + (i === t.bwLines.length - 1 ? ' cut' : '');
+      term.append(line);
+      if (calm) { line.textContent = text; line.classList.remove('caret'); continue; }
+      for (const char of text) {
+        line.textContent += char;
+        if (!(await wait(char === ' ' ? 12 : 26, id))) return;
+      }
+      line.classList.remove('caret');
+      if (!(await wait(380, id))) return;
+    }
+    term.append(Object.assign(document.createElement('div'), {className: 'note', textContent: t.bwNote}));
+    if (!(await wait(2600, id))) return;
+    corrupt(heading.cyber, 'CYBER', id);
+    await corrupt(heading.cardex, 'CARDEX.', id);
+    if (id === run) closeBlackwall();
+  }
+
+  $('transmission').addEventListener('click', openBlackwall);
+  let typed = '';
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') return closeBlackwall();
+    if (event.key === 'F5' && !event.ctrlKey) { event.preventDefault(); return check(); }
+    if (event.key.length !== 1 || event.target.closest('input, textarea')) return;
+    typed = (typed + event.key.toLowerCase()).slice(-9);
+    if (typed === 'blackwall') openBlackwall();
+  });
+
+  document.querySelectorAll('.lang button').forEach((button) => button.addEventListener('click', () => {
+    lang = button.dataset.lang;
+    store.set(lang);
+    render();
+  }));
+  $('refresh').addEventListener('click', check);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && Date.now() - lastCheck > 10 * 60000) check();
+  });
+  check();
 })();
 </script>
 </body>
