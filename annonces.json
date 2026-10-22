@@ -1,1 +1,26 @@
-{ "annonces": [] }
+{
+  "_mode_d_emploi": [
+    "Annonces de la page de statut (https://cybercardex.github.io/statut.html).",
+    "Ce champ et _modele sont ignorés par la page : seule la liste « annonces » plus bas s'affiche.",
+    "",
+    "AJOUTER : copier le bloc _modele dans la liste « annonces » (entre les crochets [ ]), le remplir, enregistrer,",
+    "puis commit et push. L'annonce apparaît en ligne en quelques minutes.",
+    "Plusieurs annonces : les séparer par une virgule. 5 au plus.",
+    "",
+    "niveau : info (bord cyan), attention (jaune) ou panne (rouge, affiché « Incident »).",
+    "debut / fin : facultatifs, AAAA-MM-JJ, inclus. Hors de ces dates, l'annonce est cachée. Supprimer la ligne si inutile.",
+    "fr / en : titre obligatoire dans les deux langues (120 caractères), texte facultatif (600). \\n = retour à la ligne.",
+    "",
+    "RETIRER : remettre la liste vide, « annonces »: [], ou mettre une date de fin.",
+    "ERREUR : une annonce mal remplie est ignorée ; une virgule ou un guillemet en trop cache toutes les annonces,",
+    "mais le reste de la page marche toujours. Pas de virgule après le dernier élément d'une liste."
+  ],
+  "_modele": {
+    "niveau": "info",
+    "debut": "2026-11-01",
+    "fin": "2026-11-07",
+    "fr": { "titre": "Titre en français", "texte": "Texte en français, facultatif." },
+    "en": { "titre": "English title", "texte": "English text, optional." }
+  },
+  "annonces": []
+}
