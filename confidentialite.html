@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CyberCardex — confidentialité / privacy</title>
+<meta name="description" content="CyberCardex : mentions légales et politique de confidentialité de l'app Android. Legal notice and privacy policy.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="icon.png">
+<style>@font-face { font-family: Rajdhani; src: url(fonts/Rajdhani-Bold.ttf) format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: Barlow; src: url(fonts/Barlow-Regular.ttf) format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: Barlow; src: url(fonts/Barlow-Medium.ttf) format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: JetBrainsMono; src: url(fonts/JetBrainsMono.ttf) format("truetype"); font-display: swap; }
+
+/* Couleurs du thème Night City de l'app ; Vitrine blanche en mode clair. */
+:root {
+  --bg: #05070c; --surface: #0d1015; --surface2: #151922; --border: #262c37; --border-strong: #3a4250;
+  --text: #e9eef5; --soft: #c3cad5; --muted: #7a8494; --muted2: #a0a9b6;
+  --yellow: #fcee0a; --yellow-text: #fcee0a; --cyan: #00f0ff; --red: #ff003c; --ink: #05070c;
+  --display: Rajdhani, "Arial Narrow", sans-serif; --body: Barlow, system-ui, sans-serif; --mono: JetBrainsMono, ui-monospace, monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f4f5f7; --surface: #ffffff; --surface2: #eef0f3; --border: #d9dde3; --border-strong: #b9c0ca;
+    --text: #12151a; --soft: #39404a; --muted: #6b7380; --muted2: #545c68; --yellow-text: #7a6f00; --cyan: #007c86; --ink: #12151a;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+body {
+  margin: 0; color: var(--text); font: 17px/1.6 var(--body);
+  background:
+    linear-gradient(transparent 0 calc(100% - 1px), color-mix(in srgb, var(--border) 45%, transparent) 0) 0 0 / 100% 32px,
+    linear-gradient(90deg, transparent 0 calc(100% - 1px), color-mix(in srgb, var(--border) 45%, transparent) 0) 0 0 / 32px 100%,
+    var(--bg);
+}
+main { max-width: 820px; margin: 0 auto; padding: 20px 16px 72px; }
+a { color: var(--yellow-text); text-underline-offset: 3px; }
+a:hover { color: var(--cyan); }
+
+.top { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+.top img { width: 40px; height: 40px; border-radius: 10px; }
+.brand { font: 700 22px/1 var(--display); letter-spacing: .08em; text-transform: uppercase; }
+.brand small { display: block; font: 11px/1.4 var(--mono); letter-spacing: .12em; color: var(--muted); margin-top: 4px; }
+.switch { margin-left: auto; display: flex; border: 1px solid var(--border-strong); }
+.switch label { cursor: pointer; padding: 6px 12px; font: 600 12px/1 var(--mono); letter-spacing: .1em; color: var(--muted2); }
+fieldset.switch { margin: 0 0 0 auto; padding: 0; min-width: 0; }
+.switch legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.switch input { position: absolute; opacity: 0; pointer-events: none; }
+.switch input:checked + label { background: var(--yellow); color: #05070c; }
+.switch input:focus-visible + label { outline: 2px solid var(--cyan); }
+body:has(#l-fr:checked) .lang-en, body:has(#l-en:checked) .lang-fr { display: none; }
+h1, h2, h3, p, li, dd { overflow-wrap: anywhere; hyphens: auto; }
+
+.hero {
+  position: relative; padding: 24px 22px; margin-bottom: 18px; background: var(--surface);
+  border: 1px solid var(--border); border-left: 3px solid var(--yellow);
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+}
+.kicker, .num { font: 600 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--yellow-text); margin: 0 0 10px; }
+h1 { font: 700 clamp(30px, 6vw, 44px)/1.05 var(--display); text-transform: uppercase; letter-spacing: .02em; margin: 0 0 8px; }
+.updated { font: 12px/1.4 var(--mono); color: var(--muted); margin: 0 0 18px; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; }
+.toc a {
+  display: inline-flex; gap: 8px; align-items: baseline; padding: 6px 10px; text-decoration: none; color: var(--soft);
+  border: 1px solid var(--border-strong); background: var(--surface2); font: 500 14px/1.2 var(--body);
+}
+.toc a span { font: 11px/1 var(--mono); color: var(--yellow-text); }
+.toc a:hover { border-color: var(--yellow); color: var(--text); }
+
+.panel {
+  position: relative; margin: 0 0 14px; padding: 20px 22px 8px; background: var(--surface); border: 1px solid var(--border);
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+.panel::before { content: ""; position: absolute; left: 0; top: 20px; width: 3px; height: 28px; background: var(--yellow); }
+h2 { font: 700 26px/1.1 var(--display); text-transform: uppercase; letter-spacing: .03em; margin: 0 0 12px; }
+h3 { font: 700 19px/1.2 var(--display); text-transform: uppercase; letter-spacing: .04em; color: var(--text); margin: 22px 0 6px; padding-top: 14px; border-top: 1px dashed var(--border); }
+p, li { color: var(--soft); margin: 0 0 12px; }
+.lead { color: var(--text); font-weight: 500; padding: 12px 14px; background: color-mix(in srgb, var(--yellow) 8%, transparent); border-left: 2px solid var(--yellow); }
+ul { padding-left: 0; list-style: none; margin: 0 0 12px; }
+li { position: relative; padding-left: 20px; }
+li::before { content: "▸"; position: absolute; left: 2px; color: var(--yellow-text); }
+dl { display: grid; gap: 12px; margin: 0 0 16px; }
+dt { font: 11px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+dd { margin: 2px 0 0; color: var(--text); }
+footer { margin-top: 28px; text-align: center; font: 11px/1.6 var(--mono); letter-spacing: .08em; color: var(--muted); }
+@media (max-width: 520px) { .hero, .panel { padding-left: 16px; padding-right: 16px; } .brand small { display: none; } }
+</style>
+</head>
+<body>
+<main>
+<div class="top">
+<img src="icon.png" alt="">
+<div class="brand">CyberCardex<small>Android · Cyberpunk TCG</small></div>
+<fieldset class="switch"><legend>Langue / Language</legend><input type="radio" name="lang" id="l-fr" lang="fr" checked><label for="l-fr" lang="fr">FR</label><input type="radio" name="lang" id="l-en" lang="en"><label for="l-en" lang="en">EN</label></fieldset>
+</div>
+<div class="lang lang-fr" lang="fr">
+<header class="hero">
+<p class="kicker">// Informations légales</p>
+<h1>Mentions légales, confidentialité et conditions</h1>
+<p class="updated">Mise à jour le 22 octobre 2026.</p>
+<nav class="toc" aria-label="Sommaire">
+<a href="#fr-1"><span>01</span>Mentions légales</a>
+<a href="#fr-2"><span>02</span>Politique de confidentialité</a>
+<a href="#fr-3"><span>03</span>Conditions d'utilisation</a>
+<a href="#fr-4"><span>04</span>Crédits et propriété</a>
+<a href="#fr-5"><span>05</span>Licence</a>
+</nav>
+</header>
+<section class="panel" id="fr-1">
+<p class="num">// 01</p>
+<h2>Mentions légales</h2>
+<dl>
+<div><dt>Éditeur</dt><dd>Louis Morvan (PommeSauce0), particulier, pour un projet personnel gratuit et non commercial.</dd></div>
+<div><dt>Directeur de la publication</dt><dd>Louis Morvan (PommeSauce0)</dd></div>
+<div><dt>Contact</dt><dd><a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a></dd></div>
+<div><dt>Hébergeur</dt><dd>Cette page : GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</dd></div>
+</dl>
+</section>
+<section class="panel" id="fr-2">
+<p class="num">// 02</p>
+<h2>Politique de confidentialité</h2>
+<p class="lead">CyberCardex enregistre ta collection sur ton téléphone. Il n'y a ni compte CyberCardex ni serveur de synchronisation, ni publicité, ni outil de mesure d'audience ou de suivi, ni cookie de suivi. L'app ne se connecte d'elle-même à Internet que pour les fonctions du menu En ligne (Réglages → En ligne), toutes coupées au départ, chacune avec son interrupteur ; aucune n'envoie ta collection. Les services qu'elles contactent (Google Play, GitHub ; voir plus bas) reçoivent ton adresse IP et les informations techniques de la demande, comme pour n'importe quel site. Ces interrupteurs ne règlent que l'app : Android et le Play Store ont leur propre fonctionnement (mises à jour de l'app, sauvegarde du téléphone, rapports de plantage si tu les as autorisés). Quand tu exportes, partages ou ouvres un lien, c'est l'application ou le service que tu choisis qui s'en charge.</p>
+<h3>Ce qui est enregistré, et où</h3>
+<p>Ta collection, ta wishlist, tes decks, tes classeurs, tes badges, tes échanges récents et tes réglages restent sur ton téléphone, dans le stockage de l'app. Ils servent seulement à faire fonctionner CyberCardex. Cela comprend aussi tes contacts d'échange et les copies de secours prises avant chaque import. Pour tout effacer : Réglages → Zone sensible → Tout effacer (y compris les données reprises de l'ancienne version), ou désinstaller l'app. Cela n'efface pas les fichiers que tu as exportés ou partagés, ni les sauvegardes gérées par Android ou Google.</p>
+<p>Sur Android, la sauvegarde automatique du téléphone peut copier ces données dans ton compte Google, si tu l'as activée. Elles y restent privées : je n'y ai pas accès.</p>
+<h3>Cookies</h3>
+<p>CyberCardex ne dépose aucun cookie : ni publicité, ni mesure d'audience, ni suivi. Il utilise seulement le stockage décrit plus haut, indispensable à son fonctionnement : c'est pourquoi aucun bandeau de consentement n'est nécessaire. Si un cookie non indispensable était ajouté un jour, ton accord serait demandé avant.</p>
+<h3>La caméra et les photos</h3>
+<p>Le scanner de cartes et le lecteur de QR code utilisent la caméra, ou une photo que tu choisis. L'image est analysée directement sur ton téléphone et n'est jamais envoyée sur Internet. La photo prise par le scanner passe par un fichier temporaire privé de l'app, dont l'app demande la suppression dès qu'elle l'a lue ; elle n'arrive jamais dans ta galerie. Le micro n'est pas utilisé.</p>
+<h3>Exports, imports et partages</h3>
+<p>Les sauvegardes (JSON) et les exports tableur (CSV) ne sont pas chiffrés : ils contiennent ta collection, avec tes notes et tes prix d'achat, et la sauvegarde complète contient aussi tes contacts d'échange. Tu choisis où les enregistrer (téléphone, cloud…) avec le sélecteur de fichiers d'Android ; ils restent alors sous la responsabilité de l'endroit choisi. De même, « Partager » envoie un texte à l'application que tu choisis.</p>
+<h3>Les services contactés</h3>
+<ul><li>Google Play, si tu as installé l'app depuis le Play Store. Google traite le téléchargement et les mises à jour selon ses propres règles. L'app lui demande s'il existe une nouvelle version seulement si tu allumes « Recherche automatique de mises à jour » dans Réglages → En ligne (coupée par défaut), ou si tu appuies sur « Rechercher une mise à jour ». Pour répondre, Google utilise des informations techniques sur ton appareil et sur la version installée de l'app. De son côté, la Play Console me montre des statistiques globales (nombre d'installations, notes) et des informations techniques de diagnostic (plantages, lenteurs), selon les règles de Google et tes réglages Android ; CyberCardex n'y ajoute aucun outil de suivi.</li><li>GitHub, seulement si tu allumes « Prix du jour », « Prix TCGplayer », « Nouvelles séries » ou « Messages du dev » dans Réglages → En ligne : l'app y télécharge les prix Cardmarket ou TCGplayer du jour, les nouvelles cartes ou les messages du développeur. GitHub reçoit alors ton adresse IP et les informations techniques de la demande ; rien sur ta collection n'est envoyé. La version web de cette politique est hébergée par GitHub (GitHub Pages) : la consulter dans un navigateur transmet les mêmes informations techniques à GitHub.</li><li>Les liens vers Cardmarket, TCGplayer, cyberpunktcg.com, Ko-fi (dons facultatifs) et les réseaux officiels ouvrent ces sites dans ton navigateur. Ils ont leurs propres règles.</li></ul>
+<p>Pourquoi : les fonctions en ligne servent uniquement à ce que tu as allumé (prix, nouvelles cartes, messages, mises à jour) ; les e-mails servent à te répondre, et Ko-fi traite tes soutiens. Google et GitHub traitent ces informations selon leurs propres règles, dans l'Union européenne ou dans d'autres pays. Les éventuels transferts hors de l'Union européenne sont encadrés par les mécanismes prévus par le RGPD (comme le cadre de protection des données UE–États-Unis et les clauses contractuelles types), décrits dans leurs politiques de confidentialité.</p>
+<p>Leurs politiques de confidentialité : <a href="https://policies.google.com/privacy">Google</a> · <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a> · <a href="https://more.ko-fi.com/privacy">Ko-fi</a>.</p>
+<h3>Les échanges par QR code</h3>
+<p>Le code d'échange contient seulement tes cartes possédées, tes doubles, ta wishlist et le pseudo que tu choisis. Il passe d'un appareil à l'autre quand on le scanne, sans aucun serveur. Il n'est pas chiffré : toute personne qui le scanne ou le photographie peut le lire et le garder. L'app garde sur ton téléphone les codes reçus (pseudo, date) pour comparer vos collections : les 20 derniers contacts, plus ceux que tu épingles. Tu peux les oublier un par un.</p>
+<h3>Si tu m'écris</h3>
+<p>Ton message et ton adresse e-mail restent dans la boîte <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a> (Google). Ils servent seulement à te répondre et à suivre ta demande (un bug, une idée). Je les garde jusqu'à un an après notre dernier échange, puis je les supprime ; plus tôt si tu me le demandes, sauf s'il faut les garder pour un litige. Base légale : mon intérêt légitime à répondre aux demandes qu'on m'envoie.</p>
+<h3>Si tu me soutiens</h3>
+<p>Si tu choisis de me soutenir sur Ko-fi, cela se passe en dehors de CyberCardex. Ko-fi et le service de paiement peuvent me communiquer ton nom ou pseudo, ton adresse e-mail, ton éventuel message et le montant. Je m'en sers seulement le temps de te remercier et de répondre à ta demande ; ce soutien ne débloque rien dans l'app. Je ne reçois jamais tes coordonnées bancaires. L'historique des transactions est aussi conservé par Ko-fi et le service de paiement, selon leurs propres règles. Pour les données que je détiens ou que je peux supprimer, contacte-moi : je traite ta demande selon les possibilités et obligations applicables. Base légale : mon intérêt légitime à te remercier et à te répondre, et le respect de mes obligations légales le cas échéant.</p>
+<h3>Sécurité</h3>
+<p>Tes données sont dans le stockage privé de l'app, que les protections habituelles d'Android isolent des autres applications. Les fonctions en ligne passent en HTTPS. Les nouvelles cartes et les messages du développeur sont signés : avant de les installer, l'app vérifie qu'ils viennent bien de moi et n'ont pas été modifiés. La seule autorisation que l'app te demande est l'accès à l'appareil photo (pour scanner) ; les fichiers et photos à importer sont choisis avec le sélecteur d'Android.</p>
+<h3>Tes droits</h3>
+<p>Tes données de collection restent sur ton téléphone : c'est toi qui les gères (modifier, exporter, tout effacer). Pour ce que je peux détenir (tes e-mails, un soutien Ko-fi), tu as le droit d'y accéder, de les corriger, de les faire effacer, d'en limiter l'usage ou de t'y opposer, et d'en recevoir une copie. Écris à <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a> : je réponds dans un délai d'un mois. Tu peux aussi saisir la CNIL (<a href="https://www.cnil.fr/">cnil.fr</a>).</p>
+</section>
+<section class="panel" id="fr-3">
+<p class="num">// 03</p>
+<h2>Conditions d'utilisation</h2>
+<ul><li>CyberCardex est gratuit, sans compte, sans publicité et sans achat dans l'app : l'app ne coûte rien et ne débloque rien contre de l'argent. Un soutien sur Ko-fi est facultatif et se fait selon les règles de Ko-fi.</li><li>Il est fourni tel quel. Les données des cartes et les prix sont indicatifs et peuvent contenir des erreurs : les règles officielles et les sites de vente font foi.</li><li>Tes données restent sur ton appareil, sous ta responsabilité : pense à faire des sauvegardes (Réglages → Données et sauvegardes locales). Sans sauvegarde, elles sont perdues si tu désinstalles l'app ou effaces ses données.</li><li>Tu peux utiliser CyberCardex pour ton usage personnel, sans en faire un usage commercial ni t'en servir pour porter atteinte aux droits d'autrui.</li><li>Dans les limites permises par la loi, PommeSauce0 ne peut être tenu responsable d'une perte de données ou d'une décision prise d'après un prix affiché. Tes droits de consommateur restent entiers.</li><li>Ces conditions relèvent du droit français. Elles peuvent évoluer : la date de mise à jour figure en haut de cette page.</li></ul>
+</section>
+<section class="panel" id="fr-4">
+<p class="num">// 04</p>
+<h2>Crédits et propriété</h2>
+<p>CyberCardex est une application communautaire gratuite et non officielle. Elle n'est ni affiliée, ni soutenue, ni approuvée par WeirdCo, CD PROJEKT RED ou NetDeck.</p>
+<p>Cyberpunk TCG est développé par WeirdCo en collaboration avec CD PROJEKT RED. Cyberpunk, Cyberpunk 2077 et les visuels des cartes appartiennent à CD PROJEKT S.A. et à leurs ayants droit.</p>
+<p>Les données du catalogue proviennent de NetDeck (<a href="https://netdeck.gg/">netdeck.gg</a>). Elles sont récupérées lors de la préparation du catalogue, puis intégrées à l'application ou proposées sous forme de mises à jour ponctuelles hébergées sur GitHub, afin de permettre une utilisation hors ligne. L'application installée ne contacte pas directement NetDeck pour afficher les cartes, et les données peuvent ne pas refléter immédiatement les dernières modifications de leur service.</p>
+<p>Prix : Cardmarket, à titre indicatif. CyberCardex n'est pas affilié à Cardmarket.</p>
+<p>Prix TCGplayer : repris chaque jour de TCGCSV (<a href="https://tcgcsv.com/">tcgcsv.com</a>), une copie publique des données de TCGplayer, à titre indicatif. CyberCardex n'est affilié ni à TCGplayer ni à TCGCSV.</p>
+<p>Le nom CyberCardex et le logo CC appartiennent à PommeSauce0.</p>
+<p>Tu es ayant droit et un contenu te pose problème ? Écris à <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a> : je le retire rapidement de ce qui est en ligne et de la prochaine version de l'app (je ne peux pas l'effacer des téléphones où l'app est déjà installée).</p>
+</section>
+<section class="panel" id="fr-5">
+<p class="num">// 05</p>
+<h2>Licence</h2>
+<p>Le code de cette version de CyberCardex n'est pas publié : tous droits réservés. Les versions 1.0.0 et 1.1.0 restent sous licence MIT. Le nom, le logo et les données des cartes ne sont couverts par aucune de ces licences.</p>
+<p>CyberCardex utilise des bibliothèques open source (Flutter, zxing2, camera, archive…) et des polices sous licence SIL Open Font (Rajdhani, Barlow, JetBrains Mono, Big Shoulders, Instrument Sans), chacune sous sa propre licence.</p>
+</section>
+</div>
+
+<div class="lang lang-en" lang="en">
+<header class="hero">
+<p class="kicker">// Legal information</p>
+<h1>Legal notice, privacy and terms</h1>
+<p class="updated">Updated on October 22, 2026.</p>
+<nav class="toc" aria-label="Contents">
+<a href="#en-1"><span>01</span>Legal notice</a>
+<a href="#en-2"><span>02</span>Privacy policy</a>
+<a href="#en-3"><span>03</span>Terms of use</a>
+<a href="#en-4"><span>04</span>Credits and ownership</a>
+<a href="#en-5"><span>05</span>License</a>
+</nav>
+</header>
+<section class="panel" id="en-1">
+<p class="num">// 01</p>
+<h2>Legal notice</h2>
+<dl>
+<div><dt>Publisher</dt><dd>Louis Morvan (PommeSauce0), a private individual, for a free and non-commercial personal project.</dd></div>
+<div><dt>Publication director</dt><dd>Louis Morvan (PommeSauce0)</dd></div>
+<div><dt>Contact</dt><dd><a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a></dd></div>
+<div><dt>Host</dt><dd>This page: GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States.</dd></div>
+</dl>
+</section>
+<section class="panel" id="en-2">
+<p class="num">// 02</p>
+<h2>Privacy policy</h2>
+<p class="lead">CyberCardex stores your collection on your phone. There is no CyberCardex account or sync server, no ads, no audience measurement or tracking tools, no tracking cookies. The app only connects to the Internet by itself for the features of the Online menu (Settings → Online), all switched off at first, each with its own switch; none of them sends your collection. The services they contact (Google Play, GitHub; see below) receive your IP address and the technical details of the request, as with any website. These switches only control the app: Android and the Play Store work on their own (app updates, phone backup, crash reports if you allowed them). When you export, share or open a link, the app or service you choose handles it.</p>
+<h3>What is stored, and where</h3>
+<p>Your collection, wishlist, decks, binders, badges, recent trades and settings stay on your phone, in the app's storage. They are only used to make CyberCardex work. This also includes your trade contacts and the recovery backups taken before each import. To erase everything: Settings → Danger zone → Erase everything (including data taken over from the previous version), or uninstall the app. This does not erase files you exported or shared, nor backups managed by Android or Google.</p>
+<p>On Android, your phone's automatic backup may copy this data to your Google account, if you turned it on. It stays private there: I have no access to it.</p>
+<h3>Cookies</h3>
+<p>CyberCardex sets no cookies: no advertising, no audience measurement, no tracking. It only uses the storage described above, which it needs to work: that is why no consent banner is needed. If a non-essential cookie were ever added, your consent would be asked first.</p>
+<h3>Camera and photos</h3>
+<p>The card scanner and the QR code reader use the camera, or a photo you pick. The image is analyzed right on your phone and is never sent over the Internet. The photo taken by the scanner goes through a private temporary file; after reading it, the app attempts to delete it. It never reaches your gallery. The microphone is not used.</p>
+<h3>Exports, imports and sharing</h3>
+<p>Backups (JSON) and spreadsheet exports (CSV) are not encrypted: they hold your collection, with your notes and purchase prices, and the full backup also holds your trade contacts. You choose where to save them (phone, cloud…) with Android's file picker; they are then handled by the place you chose. Likewise, “Share” sends a text to the app you choose.</p>
+<h3>Services contacted</h3>
+<ul><li>Google Play, if you installed the app from the Play Store. Google handles the download and updates under its own rules. The app asks it whether a new version exists only if you turn on “Automatic update check” in Settings → Online (off by default), or when you tap “Check for updates”. To answer, Google uses technical information about your device and the installed version of the app. Separately, the Play Console shows me overall statistics (installs, ratings) and technical diagnostic information (crashes, slowdowns), under Google's rules and your Android settings; CyberCardex adds no tracking tool to it.</li><li>GitHub, only if you turn on “Daily prices”, “TCGplayer prices”, “New sets” or “Dev messages” in Settings → Online: the app downloads today's Cardmarket or TCGplayer prices, the new cards or the developer's messages from it. GitHub then receives your IP address and the technical details of the request; nothing about your collection is sent. The web version of this policy is hosted by GitHub (GitHub Pages): viewing it in a browser sends the same technical details to GitHub.</li><li>Links to Cardmarket, TCGplayer, cyberpunktcg.com, Ko-fi (optional donations) and the official social networks open those sites in your browser. They have their own rules.</li></ul>
+<p>Why: online features are only used for what you turned on (prices, new cards, messages, updates); e-mails are used to reply to you, and Ko-fi processes your support. Google and GitHub handle this information under their own rules, in the European Union or in other countries. Any transfers outside the European Union are covered by the mechanisms provided for by the GDPR (such as the EU–US Data Privacy Framework and standard contractual clauses), described in their privacy policies.</p>
+<p>Their privacy policies: <a href="https://policies.google.com/privacy">Google</a> · <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">GitHub</a> · <a href="https://more.ko-fi.com/privacy">Ko-fi</a>.</p>
+<h3>QR code trades</h3>
+<p>The trade code only holds the cards you own, your doubles, your wishlist and the nickname you choose. It goes from one device to another when scanned, with no server. It is not encrypted: anyone who scans or photographs it can read and keep it. The app keeps the codes you receive (nickname, date) on your phone to compare collections: the last 20 contacts, plus the ones you pin. You can forget them one by one.</p>
+<h3>If you write to me</h3>
+<p>Your message and e-mail address stay in the <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a> mailbox (Google). They are only used to reply to you and follow up on your request (a bug, an idea). I keep them up to one year after our last exchange, then delete them; sooner if you ask, unless they must be kept for a dispute. Legal basis: my legitimate interest in answering the requests I receive.</p>
+<h3>If you support me</h3>
+<p>If you choose to support me on Ko-fi, it happens outside CyberCardex. Ko-fi and the payment service may share with me your name or nickname, e-mail address, any message and the amount. I use this information only for as long as needed to thank you and respond to your request; this support unlocks nothing in the app. I never receive your bank details. Ko-fi and the payment service also keep the transaction history under their own rules. Contact me about data I hold or can delete; I will handle your request according to the applicable options and obligations. Legal basis: my legitimate interest in thanking and answering you, and compliance with my legal obligations where applicable.</p>
+<h3>Security</h3>
+<p>Your data is in the app's private storage, which Android's usual protections keep apart from other apps. The online features use HTTPS. New cards and the developer's messages are signed: before installing them, the app checks that they really come from me and have not been modified. The only permission the app asks you for is camera access (to scan); files and photos to import are picked with Android's file picker.</p>
+<h3>Your rights</h3>
+<p>Your collection data stays on your phone: you manage it yourself (edit, export, erase everything). For what I may hold (your e-mails, a Ko-fi support), you have the right to access, correct, erase, restrict or object to its use, and to receive a copy. Write to <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a>: I reply within one month. You can also contact the CNIL, the French data protection authority (<a href="https://www.cnil.fr/">cnil.fr</a>).</p>
+</section>
+<section class="panel" id="en-3">
+<p class="num">// 03</p>
+<h2>Terms of use</h2>
+<ul><li>CyberCardex is free, with no account, no ads and no in-app purchases: the app costs nothing and unlocks nothing for money. Supporting me on Ko-fi is optional and subject to Ko-fi's terms.</li><li>It is provided as is. Card data and prices are indicative and may contain mistakes: the official rules and the selling sites prevail.</li><li>Your data stays on your device, under your responsibility: remember to make backups (Settings → Data and local backups). Without a backup, it is lost if you uninstall the app or clear its data.</li><li>You may use CyberCardex for your personal use, without any commercial use and without using it to infringe the rights of others.</li><li>To the extent permitted by law, PommeSauce0 cannot be held liable for data loss or for a decision made on the basis of a displayed price. Your consumer rights remain intact.</li><li>These terms are governed by French law. They may change: the update date is shown at the top of this page.</li></ul>
+</section>
+<section class="panel" id="en-4">
+<p class="num">// 04</p>
+<h2>Credits and ownership</h2>
+<p>CyberCardex is a free, unofficial community app. It is not affiliated with, supported or endorsed by WeirdCo, CD PROJEKT RED or NetDeck.</p>
+<p>Cyberpunk TCG is developed by WeirdCo in collaboration with CD PROJEKT RED. Cyberpunk, Cyberpunk 2077 and the card artwork belong to CD PROJEKT S.A. and their rights holders.</p>
+<p>The catalog data comes from NetDeck (<a href="https://netdeck.gg/">netdeck.gg</a>). It is collected when the catalog is prepared, then built into the app or offered as occasional updates hosted on GitHub, so the app works offline. The installed app does not contact NetDeck directly to display cards, and the data may not immediately reflect the latest changes to their service.</p>
+<p>Prices: Cardmarket, for reference only. CyberCardex is not affiliated with Cardmarket.</p>
+<p>TCGplayer prices: taken each day from TCGCSV (<a href="https://tcgcsv.com/">tcgcsv.com</a>), a public copy of TCGplayer's data, for reference only. CyberCardex is not affiliated with TCGplayer or TCGCSV.</p>
+<p>The CyberCardex name and the CC logo belong to PommeSauce0.</p>
+<p>Are you a rights holder with an issue about some content? Write to <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a>: I quickly remove it from what is online and from the next version of the app (I cannot erase it from phones where the app is already installed).</p>
+</section>
+<section class="panel" id="en-5">
+<p class="num">// 05</p>
+<h2>License</h2>
+<p>The code of this version of CyberCardex is not published: all rights reserved. Versions 1.0.0 and 1.1.0 remain under the MIT license. The name, the logo and the card data are not covered by any of these licenses.</p>
+<p>CyberCardex uses open source libraries (Flutter, zxing2, camera, archive…) and fonts under the SIL Open Font License (Rajdhani, Barlow, JetBrains Mono, Big Shoulders, Instrument Sans), each under its own license.</p>
+</section>
+</div>
+
+<footer>CyberCardex · Louis Morvan (PommeSauce0) · <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a><br><a href="fonts/LICENSES.txt">Polices / fonts : SIL Open Font License</a></footer>
+</main>
+<script>
+// Anglais par défaut hors des téléphones en français, ou si l'adresse finit par #en.
+if (location.hash.startsWith('#en') || (!location.hash.startsWith('#fr') && !navigator.language.startsWith('fr'))) document.getElementById('l-en').checked = true;
+</script>
+</body>
+</html>
