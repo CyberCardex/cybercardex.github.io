@@ -48,7 +48,8 @@
     content: ""; position: absolute; right: 11px; top: -3px; width: 1px; height: 34px;
     transform: rotate(-45deg); background: var(--signal);
   }
-  .status-main { display: flex; align-items: center; gap: 24px; padding: 27px 30px 25px; }
+  .status-main { display: grid; grid-template-columns: 55px minmax(0, 1fr) auto; align-items: center; gap: 24px; padding: 27px 30px 25px; }
+  .status-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
   .signal-icon {
     display: grid; place-items: center; width: 55px; height: 55px; flex: none;
     border: 1px solid currentColor; color: var(--signal);
@@ -103,9 +104,7 @@
   .market-date { color: var(--muted); font: 400 10px/1.7 var(--mono); margin: 6px 0 0; }
   .service-bottom { margin-top: 17px; }
   .bottom-rule { height: 5px; margin-top: 8px; background: repeating-linear-gradient(115deg, #7d8a912b 0 1px, transparent 1px 6px); }
-  .transmission { position: relative; justify-self: end; }
-  button.end-mark { border: 0; padding: 12px 0; background: none; cursor: pointer; }
-  button.end-mark:hover { color: var(--cyan); }
+  .transmission { position: relative; }
   /* Blackwall : terminal NetWatch en surimpression, titre corrompu, léger tremblement. Pas de flash. */
   .blackwall-term {
     position: fixed; left: 50%; bottom: max(7vh, 24px); z-index: 30; width: min(540px, calc(100% - 36px));
@@ -144,7 +143,7 @@
   .store-link { margin-top: 12px; width: fit-content; color: var(--soft); font: 500 12px var(--mono); letter-spacing: .6px; text-decoration: underline; text-decoration-color: #fcee0a66; text-underline-offset: 3px; }
   .store-link:hover { color: var(--yellow); }
   .offline-note { display: flex; gap: 10px; align-items: baseline; margin: 23px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
-  .offline-note span { color: var(--cyan); font: 400 11px var(--mono); }
+  .offline-note > span:first-child { color: var(--cyan); font: 400 11px var(--mono); }
   /* Bouton « Vérifier » : plaque jaune à coins coupés, repère [F5], balayage pendant la lecture. */
   .refresh {
     --cut: 11px; position: relative; display: inline-flex; align-items: center; gap: 11px;
@@ -185,7 +184,9 @@
     .refresh { height: 42px; padding: 0 12px 0 10px; gap: 8px; letter-spacing: 1.6px; }
     .refresh .key { display: none; }
     .refresh svg { width: 13px; height: 13px; }
-    .status-main { padding: 23px 21px; gap: 15px; align-items: flex-start; }
+    .status-main { grid-template-columns: 36px minmax(0, 1fr); padding: 23px 21px; gap: 15px; align-items: start; }
+    .status-actions { grid-column: 2; align-items: flex-start; }
+    .on-demand { font-size: 10px; letter-spacing: .5px; }
     .signal-icon { width: 36px; height: 36px; margin-top: 3px; }
     .signal-icon svg { width: 21px; height: 21px; }
     .status h2 { font-size: 30px; line-height: 1.05; }
@@ -201,8 +202,6 @@
     .market-head { display: flex; }
     .market-head .badge { margin-top: 0; }
   }
-  /* « Vérification à la demande » : place prise par la navigation sur les écrans moyens. */
-  @media (max-width: 1060px) { .on-demand { display: none; } }
 </style>
 </head>
 <body>
@@ -211,22 +210,16 @@
 <a href="#services" class="skip" data-i18n="skip">Aller aux services</a>
 <div class="page">
   <header class="top">
-    <div class="identity">
+    <a class="identity" href="./">
       <img class="brand-mark" src="commun/icon.png" width="35" height="35" alt="" aria-hidden="true">
       <div><div class="brand-name">CYBER<span>CARDEX</span></div><div class="brand-label" data-i18n="brandLabel">État des services</div></div>
-    </div>
+    </a>
     <nav class="site-nav" aria-label="Pages">
       <a href="statut.html" aria-current="page"><span>01</span> <b data-i18n="navStatus">Statut</b></a>
       <a href="./"><span>02</span> <b data-i18n="navPrivacy">Confidentialité</b></a>
     </nav>
     <div class="top-meta">
-      <span class="on-demand" data-i18n="onDemand">Vérification à la demande</span>
       <div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr">FR</button><button type="button" data-lang="en">EN</button></div>
-      <button type="button" class="refresh" id="refresh">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 8a8 8 0 1 0 .3 7M20 3v5h-5"/></svg>
-        <span id="refresh-label">Vérifier</span>
-        <span class="key" aria-hidden="true">F5</span>
-      </button>
     </div>
   </header>
 
@@ -263,6 +256,14 @@
           <p class="status-kicker" data-i18n="statusKicker">État général</p>
           <h2 id="status-title">Lecture du signal.</h2>
           <p class="status-detail" id="status-detail">Vérification du catalogue et des prix…</p>
+        </div>
+        <div class="status-actions">
+          <span class="on-demand" data-i18n="onDemand">Vérification à la demande</span>
+          <button type="button" class="refresh" id="refresh">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 8a8 8 0 1 0 .3 7M20 3v5h-5"/></svg>
+            <span id="refresh-label">Vérifier</span>
+            <span class="key" aria-hidden="true">F5</span>
+          </button>
         </div>
       </div>
       <div class="status-bottom">
@@ -332,8 +333,9 @@
 
   <footer>
     <div>
-    <p data-i18n="footer">CyberCardex est une application communautaire gratuite et non officielle, ni affiliée ni approuvée par CD PROJEKT RED, WeirdCo ou NetDeck. Cette page vérifie l’accessibilité des données depuis ton navigateur.</p>
-    <p class="legal-links"><a href="https://play.google.com/store/apps/details?id=app.cybercardex" rel="noopener">Google Play</a> · <a href="confidentialite.html" data-i18n="privacyLink">Mentions légales et confidentialité</a></p>
+      <p><span class="lang-fr">CyberCardex est une application communautaire gratuite et non officielle, ni affiliée ni approuvée par CD PROJEKT RED, WeirdCo ou NetDeck.</span><span class="lang-en">CyberCardex is a free, unofficial community app, not affiliated with or endorsed by CD PROJEKT RED, WeirdCo or NetDeck.</span></p>
+      <p class="footer-contact">CyberCardex · Louis Morvan (PommeSauce0) · <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a></p>
+      <p class="legal-links"><a href="https://play.google.com/store/apps/details?id=app.cybercardex" rel="noopener">Google Play</a> · <a href="statut.html"><span class="lang-fr">État des services</span><span class="lang-en">Service status</span></a> · <a href="./"><span class="lang-fr">Confidentialité</span><span class="lang-en">Privacy</span></a> · <a href="commun/polices/LICENSES.txt"><span class="lang-fr">Polices</span><span class="lang-en">Fonts</span> : SIL Open Font License</a></p>
     </div>
     <div class="transmission">
       <button class="end-mark" id="transmission" type="button" title="Il reste un signal… (ou tape « blackwall »)" data-i18n="endMark">CYBERCARDEX // FIN DE TRANSMISSION</button>
@@ -530,6 +532,7 @@
   function render() {
     const t = T();
     document.documentElement.lang = lang;
+    document.documentElement.dataset.lang = lang;
     document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = t[el.dataset.i18n]; });
     document.querySelectorAll('[data-i18n-html]').forEach((el) => { el.innerHTML = t[el.dataset.i18nHtml]; });
     $('transmission').title = t.endTitle;

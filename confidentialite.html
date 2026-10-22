@@ -10,8 +10,7 @@
 <link rel="preload" href="commun/polices/Rajdhani-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Couleurs, polices, fond animé, bandeau, navigation et pied de page communs au site. -->
 <link rel="stylesheet" href="commun/site.css">
-<style>/* Une langue à la fois (sans JavaScript, les deux restent lisibles). */
-html[data-lang="fr"] .lang-en, html[data-lang="en"] .lang-fr { display: none !important; }
+<style>
 h1.long { font-size: clamp(34px, 4.4vw, 56px); line-height: .98; letter-spacing: -1px; max-width: 16ch; }
 
 /* Sommaire collé à gauche, la section à l'écran en jaune ; feuilles comme les cartes de la page de statut. */
@@ -255,10 +254,11 @@ h1.long { font-size: clamp(34px, 4.4vw, 56px); line-height: .98; letter-spacing:
   </main>
   <footer>
     <div>
-      <p>CyberCardex · Louis Morvan (PommeSauce0) · <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a></p>
-      <p class="legal-links"><a href="https://play.google.com/store/apps/details?id=app.cybercardex" rel="noopener">Google Play</a> · <a href="statut.html"><span class="lang-fr">État des services</span><span class="lang-en">Service status</span></a> · <a href="commun/polices/LICENSES.txt"><span class="lang-fr">Polices</span><span class="lang-en">Fonts</span> : SIL Open Font License</a></p>
+      <p><span class="lang-fr">CyberCardex est une application communautaire gratuite et non officielle, ni affiliée ni approuvée par CD PROJEKT RED, WeirdCo ou NetDeck.</span><span class="lang-en">CyberCardex is a free, unofficial community app, not affiliated with or endorsed by CD PROJEKT RED, WeirdCo or NetDeck.</span></p>
+      <p class="footer-contact">CyberCardex · Louis Morvan (PommeSauce0) · <a href="mailto:cybercardex@gmail.com">cybercardex@gmail.com</a></p>
+      <p class="legal-links"><a href="https://play.google.com/store/apps/details?id=app.cybercardex" rel="noopener">Google Play</a> · <a href="statut.html"><span class="lang-fr">État des services</span><span class="lang-en">Service status</span></a> · <a href="./"><span class="lang-fr">Confidentialité</span><span class="lang-en">Privacy</span></a> · <a href="commun/polices/LICENSES.txt"><span class="lang-fr">Polices</span><span class="lang-en">Fonts</span> : SIL Open Font License</a></p>
     </div>
-    <span class="end-mark"><span class="lang-fr">CYBERCARDEX // FIN DE TRANSMISSION</span><span class="lang-en">CYBERCARDEX // END OF TRANSMISSION</span></span>
+    <div class="transmission"><span class="end-mark"><span class="lang-fr">CYBERCARDEX // FIN DE TRANSMISSION</span><span class="lang-en">CYBERCARDEX // END OF TRANSMISSION</span></span></div>
   </footer>
 </div>
 <script>
