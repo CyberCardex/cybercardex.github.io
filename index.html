@@ -44,9 +44,11 @@
   .status[data-tone="warning"] { --signal: var(--yellow); border-color: #6b6630; background: linear-gradient(100deg, #fcee0a0d, #11171b 64%); }
   .status[data-tone="error"] { --signal: var(--red); border-color: #78434b; background: linear-gradient(100deg, #ff74860c, #11171b 64%); }
   .status::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--signal); }
+  /* Trait du coin coupé, exactement sur la coupe (avant : décalé, le coin restait ouvert). */
   .status::after {
-    content: ""; position: absolute; right: 11px; top: -3px; width: 1px; height: 34px;
-    transform: rotate(-45deg); background: var(--signal);
+    content: ""; position: absolute; top: -1px; right: -1px; width: 23px; height: 23px; pointer-events: none;
+    background: linear-gradient(to top right, transparent calc(50% - 1.4px), var(--signal) calc(50% - 1.4px),
+      var(--signal) calc(50% + 1.4px), transparent calc(50% + 1.4px));
   }
   .status-main { display: grid; grid-template-columns: 55px minmax(0, 1fr) auto; align-items: center; gap: 24px; padding: 27px 30px 25px; }
   .status-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
@@ -113,6 +115,13 @@
     color: #ff9aaa; font: 400 12px/1.85 var(--mono); letter-spacing: .4px; white-space: pre-wrap;
     box-shadow: 0 0 0 1px #000, 0 20px 80px #ff003c2e;
     clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+  /* Les deux coins coupés, fermés par leur trait (le clip-path retire la bordure). */
+  .blackwall-term::before {
+    content: ""; position: absolute; inset: -1px; pointer-events: none;
+    --d: linear-gradient(to top right, transparent calc(50% - 1.4px), #ff345b66 calc(50% - 1.4px),
+      #ff345b66 calc(50% + 1.4px), transparent calc(50% + 1.4px));
+    background: var(--d) top right / 16px 16px no-repeat, var(--d) bottom left / 16px 16px no-repeat;
   }
   body[data-blackwall="true"] .blackwall-term { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
   .blackwall-term .head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; padding-bottom: 8px;
@@ -374,6 +383,7 @@
       catAvailable: 'Catalogue disponible', lastPub: 'Dernière publication', pubUnknown: 'Date de publication non renseignée',
       pubUnchecked: 'Dernière publication non vérifiée', catDown: 'Le catalogue en ligne est momentanément inaccessible.',
       catCopy: 'Les mises à jour de cartes se téléchargent depuis l’application.', catNone: 'Aucune nouveauté publiée pour le moment.',
+      catIncluded: (v) => `Rien à télécharger : toutes les cartes publiées sont incluses dans l’app ${v}. Les prochaines nouveautés arriveront ici.`,
       pending: ['Lecture du signal.', 'Vérification du catalogue et des prix…', 'VÉRIFICATION EN COURS'],
       error: ['Signal perturbé.', 'Une partie des données est inaccessible depuis ce navigateur. Tu peux réessayer.', 'ACCÈS PARTIEL OU INDISPONIBLE'],
       warning: ['Prix à actualiser.', 'Les données sont accessibles, mais la date d’au moins un marché est à vérifier.', 'DONNÉES ACCESSIBLES · FRAÎCHEUR À VÉRIFIER'],
@@ -408,6 +418,7 @@
       catAvailable: 'Catalogue available', lastPub: 'Last published', pubUnknown: 'Publication date not provided',
       pubUnchecked: 'Last publication not checked', catDown: 'The online catalogue is temporarily unreachable.',
       catCopy: 'Card updates are downloaded from the app.', catNone: 'Nothing new published yet.',
+      catIncluded: (v) => `Nothing to download: every published card is built into app ${v}. Upcoming additions will show up here.`,
       pending: ['Reading the signal.', 'Checking the catalogue and prices…', 'CHECK IN PROGRESS'],
       error: ['Signal disrupted.', 'Some data cannot be reached from this browser. You can try again.', 'PARTIAL OR NO ACCESS'],
       warning: ['Prices need a refresh.', 'Data is reachable, but at least one market’s date needs checking.', 'DATA REACHABLE · FRESHNESS TO CHECK'],
@@ -446,12 +457,16 @@
   const today = () => new Date().toLocaleDateString('sv');
   const showing = (n) => (!dateValue(n.debut) || n.debut.slice(0, 10) <= today()) && (!dateValue(n.fin) || today() <= n.fin.slice(0, 10));
   let notices = [];
+  // Cahiers déjà inclus dans une version de l'app (« cahiersInclus » d'annonces.json : empreinte → version) : ils ne
+  // sont plus une mise à jour à télécharger, la page le dit au lieu d'afficher leur révision.
+  let included = {};
 
   async function loadNotices() {
     try {
       const response = await fetch('annonces.json', {cache: 'no-store'});
       if (!response.ok) return [];
       const data = await response.json();
+      included = isObject(data) && isObject(data.cahiersInclus) ? data.cahiersInclus : {};
       return isObject(data) && Array.isArray(data.annonces) ? data.annonces.filter(noticeValid).filter(showing).slice(0, 5) : [];
     } catch {
       return [];
@@ -558,18 +573,20 @@
     // Dernier cahier : son titre dit ce qu'il apporte (texte du catalogue signé, affiché comme texte).
     const latest = catalogue && catalogue.notebooks.filter((n) => isObject(n) && Number.isSafeInteger(n.revision))
       .sort((a, b) => b.revision - a.revision)[0];
-    const titles = latest && isObject(latest.title) ? latest.title : {};
+    const inApp = latest && typeof included[latest.base] === 'string' && /^\d+\.\d+\.\d+$/.test(included[latest.base])
+      ? included[latest.base] : null;
+    const titles = latest && !inApp && isObject(latest.title) ? latest.title : {};
     const title = typeof titles[lang] === 'string' ? titles[lang] : typeof titles.fr === 'string' ? titles.fr : '';
     // Révision du dernier cahier : pour suivre les publications d'un coup d'œil.
-    $('catalogue-rev').hidden = !latest;
-    if (latest) {
+    $('catalogue-rev').hidden = !latest || !!inApp;
+    if (latest && !inApp) {
       const count = Array.isArray(latest.printings) ? latest.printings.length : 0;
       const minApp = Number.isSafeInteger(latest.minApp) && latest.minApp > 0 ? codeVersion(latest.minApp) : '—';
       $('catalogue-rev').textContent = t.revision(latest.revision, count, minApp);
     }
     $('catalogue-latest').hidden = !title.trim();
     $('catalogue-latest').textContent = title.trim().slice(0, 120);
-    $('catalogue-copy').textContent = !catalogue ? t.catDown : catalogue.notebooks.length ? t.catCopy : t.catNone;
+    $('catalogue-copy').textContent = !catalogue ? t.catDown : inApp ? t.catIncluded(inApp) : catalogue.notebooks.length ? t.catCopy : t.catNone;
 
     const cmState = market('cm', cm);
     const tcgState = market('tcg', tcg);
