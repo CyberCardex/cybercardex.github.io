@@ -92,14 +92,21 @@ main { flex: 1 0 auto; }
 .site-nav a {
   --cut: 8px; position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px 9px 12px;
   color: var(--muted); text-decoration: none; font: 500 10px var(--mono); letter-spacing: 1.5px; text-transform: uppercase;
-  border: 1px solid var(--line); background: #10151bb3;
+  --edge: var(--line); border: 1px solid var(--edge); background: #10151bb3;
   clip-path: polygon(0 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% 100%, 0 100%);
   transition: color .15s, border-color .15s, background .15s;
 }
+/* Coin coupé : le clip-path retire aussi la bordure, le trait en biais est redessiné pour fermer le coin (à moitié
+   rogné par le clip-path, d’où son épaisseur). */
+.site-nav a::before {
+  content: ""; position: absolute; top: -1px; right: -1px; width: var(--cut); height: var(--cut); pointer-events: none;
+  background: linear-gradient(to top right, transparent calc(50% - 1.4px), var(--edge) calc(50% - 1.4px),
+    var(--edge) calc(50% + 1.4px), transparent calc(50% + 1.4px));
+}
 .site-nav a span { color: var(--cyan); }
 .site-nav b { font-weight: inherit; }
-.site-nav a:hover { color: var(--text); border-color: #4a565e; }
-.site-nav a[aria-current="page"] { color: var(--yellow); border-color: #fcee0a55; background: #fcee0a10; }
+.site-nav a:hover { color: var(--text); --edge: #4a565e; }
+.site-nav a[aria-current="page"] { color: var(--yellow); --edge: #fcee0a55; background: #fcee0a10; }
 .site-nav a[aria-current="page"] span { color: var(--yellow); }
 .site-nav a[aria-current="page"]::after { content: ""; position: absolute; left: 12px; right: 14px; bottom: -1px; height: 2px; background: var(--yellow); }
 
